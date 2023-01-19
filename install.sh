@@ -21,7 +21,7 @@ git clone git@github.com:miltsghostrehab/dotfiles_1.git ~/.dotfiles
 
 # Symlinks
 dotfiles_in_home=(fehbg bashrc)
-dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi zsh)
+dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi)
 
 
 for file in "${dotfiles_in_home[@]}"; do
@@ -74,4 +74,15 @@ done
 # Install My Apps
 
 yay_programs=(fish cups eos-sddm-theme sddm feh ffmpeg fzf ranger imagemagick keepassxc lua python python-pip neofetch noto-fonts tree sxlock-git)
+
 flatpak_programs=(com.discordapp.Discord com.spotify.Client org.kde.kdenlive org.kde.krita)
+
+for yp in "${yay_programs[@]}"; do
+	yay -S $yp
+done
+
+for fp in "${flatpak_programs[@]}"; do
+	flatpak info $fp
+	flatpak install $fp
+done
+
