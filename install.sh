@@ -78,7 +78,7 @@ yay_programs=(fish cups eos-sddm-theme sddm feh ffmpeg fzf ranger imagemagick ke
 flatpak_programs=(com.discordapp.Discord com.spotify.Client org.kde.kdenlive org.kde.krita)
 
 for yp in "${yay_programs[@]}"; do
-	yay -S $yp
+	yay -S --noconfirm $yp
 done
 
 for fp in "${flatpak_programs[@]}"; do
