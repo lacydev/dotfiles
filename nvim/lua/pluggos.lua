@@ -1,66 +1,49 @@
 #!/usr/bin/env lua
 
-vim.cmd([[
-" Install vim-plug if not found
-let s:vim_plug_file = expand(stdpath('config') . '/autoload/plug.vim')
-if empty(glob(s:vim_plug_file))
-	execute "silent !curl -fLo " . expand(s:vim_plug_file) . 
-		\ " --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim"
-	autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
-endif
+-- Install paq if not found
+-- TODO: learn how to bootstrap paq
 
 
-call plug#begin(stdpath('config') . '/plugged')
+require "paq" {
+-- **required**
+	"savq/paq-nvim";
 
 
-" **required**
-Plug 'junegunn/vim-plug'
+-- text editing
+	"tpope/vim-surround";
+	"tpope/vim-commentary";
 
 
-" text editing
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
+-- quality of life
+	"junegunn/vim-slash";
+	"junegunn/vim-peekaboo";
 
 
-" quality of life
-Plug 'junegunn/vim-slash'
-Plug 'junegunn/vim-peekaboo'
+-- syntx
+	"frazrepo/vim-rainbow";
+	"khaveesh/vim-fish-syntax"; 
 
 
-" syntx
-Plug 'frazrepo/vim-rainbow'
-Plug 'khaveesh/vim-fish-syntax' 
+-- window decorX
+	-- "vim-airline/vim-airline";
+	-- "vim-airline/vim-airline-themes";
+	{ "nvim-lualine/lualine.nvim", requires = { 'kyazdani42/nvim-web-devicons', opt = true } };
 
 
-" window decorX
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+-- colors
+	"tomasr/molokai";
+	"morhetz/gruvbox";
+	"wojciechkepka/bogster";
+
+}
 
 
-" colors
-Plug 'tomasr/molokai'
-Plug 'morhetz/gruvbox'
-Plug 'wojciechkepka/bogster'
-
-call plug#end()
+-- ░▒█▀▀█░█░░█░▒█░█▀▀▀░░▀░░█▀▀▄░░░▒█▀▀▀█░█▀▀░▀█▀░▀█▀░░▀░░█▀▀▄░█▀▀▀░█▀▀
+-- ░▒█▄▄█░█░░█░▒█░█░▀▄░░█▀░█░▒█░░░░▀▀▀▄▄░█▀▀░░█░░░█░░░█▀░█░▒█░█░▀▄░▀▀▄
+-- ░▒█░░░░▀▀░░▀▀▀░▀▀▀▀░▀▀▀░▀░░▀░░░▒█▄▄▄█░▀▀▀░░▀░░░▀░░▀▀▀░▀░░▀░▀▀▀▀░▀▀▀
 
 
-" ░▒█▀▀█░█░░█░▒█░█▀▀▀░░▀░░█▀▀▄░░░▒█▀▀▀█░█▀▀░▀█▀░▀█▀░░▀░░█▀▀▄░█▀▀▀░█▀▀
-" ░▒█▄▄█░█░░█░▒█░█░▀▄░░█▀░█░▒█░░░░▀▀▀▄▄░█▀▀░░█░░░█░░░█▀░█░▒█░█░▀▄░▀▀▄
-" ░▒█░░░░▀▀░░▀▀▀░▀▀▀▀░▀▀▀░▀░░▀░░░▒█▄▄▄█░▀▀▀░░▀░░░▀░░▀▀▀░▀░░▀░▀▀▀▀░▀▀▀
-
-" colors
-colorscheme gruvbox
+-- colors
+vim.cmd.colorscheme( "gruvbox" )
 
 
-" vim-airline
-let g:airline#airline_theme = "monokai"
-let g:airline#extensions#tabline#enabled = 1
-
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
-
-let g:airline#extensions#tabline#formatter = 'default'
-
-" let g:airline_powerline_fonts = 1
-]])
