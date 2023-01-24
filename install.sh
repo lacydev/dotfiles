@@ -73,9 +73,11 @@ done
 
 # Install My Apps
 
-yay_programs=(fish cups eos-sddm-theme sddm feh ffmpeg fzf ranger imagemagick keepassxc lua python python-pip neofetch noto-fonts tree sxlock-git)
+yay_programs=(fish cups eos-sddm-theme sddm feh ffmpeg fzf ranger imagemagick keepassxc lua python python-pip neofetch noto-fonts tree sxlock-git ntfs-3g)
 
 flatpak_programs=(com.discordapp.Discord com.spotify.Client org.kde.kdenlive org.kde.krita)
+
+yay -Syu
 
 for yp in "${yay_programs[@]}"; do
 	yay -S --noconfirm $yp

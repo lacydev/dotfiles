@@ -1,5 +1,10 @@
 #!/usr/bin/env lua
 
+-- ░▒█▀▀█░█░░█░▒█░█▀▀▀░▀█▀░█▀▀▄░█▀▀
+-- ░▒█▄▄█░█░░█░▒█░█░▀▄░▒█░░█░▒█░▀▀▄
+-- ░▒█░░░░▀▀░░▀▀▀░▀▀▀▀░▄█▄░▀░░▀░▀▀▀
+
+
 -- Install paq if not found
 -- TODO: learn how to bootstrap paq
 
@@ -21,7 +26,8 @@ require "paq" {
 
 -- syntx
 	"frazrepo/vim-rainbow";
-	"khaveesh/vim-fish-syntax"; 
+	"khaveesh/vim-fish-syntax";
+	"euclidianAce/BetterLua.vim";
 
 
 -- window decorX
@@ -36,14 +42,5 @@ require "paq" {
 	"wojciechkepka/bogster";
 
 }
-
-
--- ░▒█▀▀█░█░░█░▒█░█▀▀▀░░▀░░█▀▀▄░░░▒█▀▀▀█░█▀▀░▀█▀░▀█▀░░▀░░█▀▀▄░█▀▀▀░█▀▀
--- ░▒█▄▄█░█░░█░▒█░█░▀▄░░█▀░█░▒█░░░░▀▀▀▄▄░█▀▀░░█░░░█░░░█▀░█░▒█░█░▀▄░▀▀▄
--- ░▒█░░░░▀▀░░▀▀▀░▀▀▀▀░▀▀▀░▀░░▀░░░▒█▄▄▄█░▀▀▀░░▀░░░▀░░▀▀▀░▀░░▀░▀▀▀▀░▀▀▀
-
-
--- colors
-vim.cmd.colorscheme( "gruvbox" )
 
 
