@@ -25,19 +25,19 @@ require('lualine').setup {
 		lualine_y = {'progress'},
 		lualine_z = {'location'}
 	},
-	inactive_sections = {
-		lualine_a = {},
+	inactive_sections = {},
+	tabline = {
+		lualine_a = {'tabs'},
 		lualine_b = {},
-		lualine_c = {'filename'},
-		lualine_x = {'location'},
+		lualine_c = {},
+		lualine_x = {},
 		lualine_y = {},
-		lualine_z = {}
+		lualine_z = {'buffers'}
 	},
-	tabline = {},
 	winbar = {},
 	inactive_winbar = {},
 	extensions = {}
 }
 
 -- to start; unsure if necessary with the above lines
-require('lualine').setup()
+-- require('lualine').setup()

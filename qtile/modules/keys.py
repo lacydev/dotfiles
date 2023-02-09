@@ -6,13 +6,15 @@ import os
 mod = 'mod4'
 terminal = 'alacritty'
 internet = 'firefox'
-music = 'flatpak run com.spotify.Client'
-password = 'keepassxc'
+internet2 = 'chromium'
 fileman = 'thunar'
 lock = 'sxlock -p "."'
-
-# TODO build a script that runs to take screenies
-# printscrn = "import ~/Pictures/Screenshot_" .  . ".png"
+music = 'spotify'
+password = 'keepassxc'
+printscreen = {}
+printscreen[1] = 'flameshot gui'
+printscreen[2] = 'flameshot screen'
+printscreen[3] = 'flameshot full'
 
 keys = [
 	# Switch between windows
@@ -96,9 +98,14 @@ keys = [
 
 	# App Launchers
 	Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-	Key([mod], "F1", lazy.spawn(internet), desc="Launch internet"),
+	Key([mod], "F1", lazy.spawn(internet), desc="Launch web browser"),
+	Key([mod], "F2", lazy.spawn(internet2), desc="Launch secondary web browser"),
 	Key([mod], "m", lazy.spawn(music), desc="Launch music player"),
-	Key([mod], "p", lazy.spawn(password), desc="Launch password manager"),
+	# Key([mod], "p", lazy.spawn(password), desc="Launch password manager"),
 	Key([mod], "n", lazy.spawn(fileman), desc="Launch file explorer"),
-	# Key([mod], "Print", lazy.spawn(printscrn), desc="Export screenshot of a window"),
+
+	# Screenshots
+	Key([mod], "Print", lazy.spawn(printscreen[1]), desc="Do a flip...er, a screenshot"),
+	Key([mod, "control"], "Print", lazy.spawn(printscreen[2]), desc="Window Screenshot"),
+	Key([mod, "shift"], "Print", lazy.spawn(printscreen[3]), desc="Full Desktop Screenshot"),
 ]

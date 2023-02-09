@@ -1,7 +1,8 @@
-from libqtile.config import Key, Group
+from libqtile.config import Key, Group, ScratchPad, DropDown
 from libqtile.command import lazy
 from libqtile import hook
-from .keys import keys, mod
+from .keys import keys, mod, terminal, fileman, music, password, internet, internet2
+
 
 groups = [Group(i) for i in "123456789"]
 
@@ -30,8 +31,18 @@ for i in groups:
 		#	  desc="move focused window to group {}".format(i.name)),
 	])
 
+groups.append( ScratchPad('scratch', [
+	DropDown("term", terminal, width=0.7, height=0.5, x=0.15, y=0.1, on_focus_lost_hide = False, opacity=1),
+	DropDown("file", fileman, width=0.4, height=0.5, x=0.3, y=0.2, on_focus_lost_hide = False, opacity=1),
+	DropDown("pass", password, width=0.4, height=0.5, x=0.3, y=0.2, on_focus_lost_hide = False, opacity=1),
+	DropDown("net1", internet,  width=0.8, height=0.9, x=0.1, y=0.05, on_focus_lost_hide = False, opacity=1),
+	DropDown("net2", internet2, width=0.8, height=0.9, x=0.1, y=0.05, on_focus_lost_hide = False, opacity=1),
+]))
 
-@hook.subscribe.client_new
-def func(c):
-	if c.name == "Spotify":
-		c.togroup("4")
+keys.extend([
+	Key([mod, "shift"], "Return", lazy.group['scratch'].dropdown_toggle('term')),
+	Key([mod, "shift"], "n", lazy.group['scratch'].dropdown_toggle('file')),
+	Key([mod, "shift"], "p", lazy.group['scratch'].dropdown_toggle('pass')),
+	Key([mod, "shift"], "F1", lazy.group['scratch'].dropdown_toggle('net1')),
+	Key([mod, "shift"], "F2", lazy.group['scratch'].dropdown_toggle('net2')),
+])

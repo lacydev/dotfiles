@@ -1,0 +1,4 @@
+#!/usr/bin/env fish
+
+nohup (flatpak run com.github.libresprite.LibreSprite) &> /dev/null &
+
