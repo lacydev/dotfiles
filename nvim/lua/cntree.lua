@@ -41,7 +41,7 @@ require "nvim-tree".setup({
 				{ key = "<a-Up>", action = "close_node" },
 				{ key = "h", action = "close_node" },
 				{ key = "<a-Down>", action = "edit_no_picker" },
-				{ key = "l", action = "edit" },
+				{ key = "l", action = "edit_no_picker" },
 				{ key = "<Esc>", action = "close" },
 				},
 			},

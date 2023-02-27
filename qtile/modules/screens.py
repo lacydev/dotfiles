@@ -36,43 +36,37 @@ screens = [
 				widget.CheckUpdates(
 					update_interval=1800,
 					distro="Arch_yay",
-					display_format="{updates} Updates",
+					display_format=" {updates} Updates",
 					foreground="#ffffff",
 					mouse_callbacks={
 						'Button1':
 						lambda: qtile.cmd_spawn(terminal + ' -e yay -Syu')
 					},
 					background="#2f343f"),
-				widget.Systray(icon_size = 20),
 				widget.TextBox(
 					   text = ' ',
 					   padding = 0,
 					   fontsize = 28,
 					   background='#2f343f'
 					   ), 
+				widget.Systray(icon_size = 20,
+					background="#2f343f"),
 				volume,
-				widget.TextBox(																	   
-					   text = ' ',
-					   padding = 0,
-					   fontsize = 28,
-					   background='#2f343f',
-					   ),	
 				widget.TextBox(
-					   text = ' ',
+					   text = '  ',
 					   padding = 0,
 					   fontsize = 28,
 					   background='#2f343f'
 					   ),	 
-				widget.Clock(format=' %Y-%m-%d %a %I:%M %p',
-							 background="#2f343f",
-							 foreground='#9bd689'),
-												widget.TextBox(												   
-												
-					   text = '|',
-					   padding = 0,
-					   fontsize = 28,
-					   foreground='#2f343f',
-					   ),	
+				widget.Clock(format='  %Y-%m-%d %a %I:%M %p ',
+					background="#2f343f",
+					foreground='#9bd689'),
+				widget.TextBox(
+					text = '|',
+					padding = 0,
+					fontsize = 28,
+					foreground='#2f343f',
+				),	
 				widget.TextBox(
 					text='O',
 					mouse_callbacks= {
@@ -83,7 +77,7 @@ screens = [
 				)
 				
 			],
-			30,  # height in px
+			32,  # height in px
 			background="#404552"  # background color
 		), ),
 ]

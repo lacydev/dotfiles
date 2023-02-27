@@ -1,3 +1,10 @@
 " nvim dotfile editing
-command! Rc :Texplore ~/.dotfiles/nvim/ | tabmove
+
+" netrw
+"command! Rc :Texplore ~/.dotfiles/nvim/ | tabmove
+
+" nvim-tree
+command! Rc :$tabnew | NvimTreeOpen ~/.dotfiles/nvim/
+
+
 command! Reload :source $MYVIMRC

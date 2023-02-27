@@ -1,0 +1,3 @@
+#!/usr/bin/env fish
+
+nohup (AppImageLauncher /home/lacy/.local/bin/appimages/balenaEtcher-1.14.3-x64.AppImage) &> /dev/null &

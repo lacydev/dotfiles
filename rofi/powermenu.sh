@@ -29,7 +29,8 @@ then
     sxlock -p "."
 elif [ "$selected_option" == "$logout" ]
 then
-	echo "Under Repair"
+	pkill -u ${USER}
+	# echo "Under Repair"
 elif [ "$selected_option" == "$shutdown" ]
 then
     systemctl poweroff

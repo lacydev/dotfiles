@@ -5,21 +5,10 @@ import re
 layouts = [
 	layout.MonadTall(margin=8, border_focus='#ffe21a',
 					 border_normal='#272121'),
-	# layout.Columns(border_focus_stack='#d75f5f'),
+	layout.MonadWide(margin=8, border_focus='#ffe21a',
+				  border_normal='#272121'),
 	layout.Max(margin=10),
-	# Try more layouts by unleashing below layouts.
-	# layout.Stack(num_stacks=2),
-	# layout.Bsp(),
-	# layout.Matrix(),
-	# layout.MonadTall(),
-	# layout.MonadWide(),
-	# layout.RatioTile(),
-	# layout.Tile(),
-	# layout.TreeTab(),
-	# layout.VerticalTile(),
-	# layout.Zoomy(),
 ]
-
 
 
 floating_layout = layout.Floating(float_rules=[
