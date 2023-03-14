@@ -1,3 +1,0 @@
-#!/usr/bin/env fish
-
-nohup (flatpak run org.godotengine.Godot) &> /dev/null &

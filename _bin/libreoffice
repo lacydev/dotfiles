@@ -1,0 +1,3 @@
+#!/usr/bin/env fish
+
+nohup (flatpak run org.libreoffice.LibreOffice) &> /dev/null &

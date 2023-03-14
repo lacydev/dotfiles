@@ -20,6 +20,7 @@ floating_layout = layout.Floating(float_rules=[
 	Match(wm_class='ssh-askpass'),	# ssh-askpass
 	Match(title='branchdialog'),  # gitk
 	Match(title='pinentry'),  # GPG key password entry
+	Match(title='*(DEBUG)'),  # godot debug
 	Match(func=lambda c: c.has_fixed_size()),
 	Match(func=lambda c: c.has_fixed_ratio()),
 ])

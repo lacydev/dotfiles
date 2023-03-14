@@ -1,5 +1,3 @@
-let mapleader = " "
-
 " console access
 nnoremap ; :
 vnoremap ; :
@@ -25,13 +23,6 @@ nnoremap <Enter> O<CR>
 " easy-align
 nmap ga <Plug>(EasyAlign)
 xmap ga <Plug>(EasyAlign)
-
-nmap <silent> <leader>a= :EasyAlign *=<CR>
-xmap <silent> <leader>a= :EasyAlign *=<CR>
-nmap <silent> <leader>a; :EasyAlign :<CR>
-xmap <silent> <leader>a; :EasyAlign :<CR>
-nmap <silent> <leader>a, :EasyAlign *,<CR>
-xmap <silent> <leader>a, :EasyAlign *,<CR>
 
 " split creation
 nnoremap <C-w>z <C-w>s

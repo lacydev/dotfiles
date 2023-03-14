@@ -8,7 +8,7 @@ launcher = 'rofi -show combi'
 terminal = 'alacritty'
 internet = 'firefox'
 internet2 = 'chromium'
-fileman = 'alacritty -e ranger'
+fileman = 'thunar'
 screenlock = 'sxlock -p "."'
 music = 'spotify'
 password = 'keepassxc'
@@ -69,8 +69,8 @@ keys = [
 	Key([mod], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
 
 	# Toggle between different layouts as defined below
-	Key([mod], "F9", lazy.prev_layout(), desc="Toggle between layouts"),
-	Key([mod], "F10", lazy.next_layout(), desc="Toggle between layouts"),
+	Key([mod], "F11", lazy.prev_layout(), desc="Toggle between layouts"),
+	Key([mod, "shift"], "F11", lazy.next_layout(), desc="Toggle between layouts"),
 
 	# System shortcuts
 	Key([mod], "Backspace", lazy.window.kill(), desc="Kill focused window"),
@@ -86,9 +86,9 @@ keys = [
 	Key([], "XF86AudioLowerVolume",lazy.spawn("amixer set Master 3%-")),
 	Key([], "XF86AudioMute",lazy.spawn("amixer set Master toggle")),
 
-	Key([], "XF86AudioNext", lazy.spawn("playerctl next")),
-	# Key([], "XF86AudioPrevious", lazy.spawn("playerctl previous")),
-	Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause")),
+	Key([], "XF86AudioNext", lazy.spawn("playerctl next --player='spotify,vlc'")),
+	Key([], "XF86AudioPrev", lazy.spawn("playerctl previous --player='spotify,vlc'")),
+	Key([], "XF86AudioPlay", lazy.spawn("playerctl play-pause --player='spotify,vlc'")),
 
 	# App Launchers
 	Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
