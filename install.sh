@@ -67,13 +67,36 @@ for folder in "${dotfiles_in_xdg_config[@]}"; do
 	fi
 done
 
+# Symlinks -- SPECIAL CASES
+
+star_conf="$HOME/.config/starship.toml" 
+star_dot="$HOME/.dotfiles/starship.toml" 
+
+if [[ -f $star_conf ]]
+then
+	if [[ -L $star_conf ]]
+	then
+		unlink $star_conf
+	else
+		mv $star_conf "$Home/Desktop/"
+	fi
+
+	if [[ -f $star_dot ]]
+	then
+		ln -s $star_dot $star_conf
+		echo -e "starship.toml --> $star_conf$SUCCESS SUCCESS $NOCOLOR"
+	else
+		echo -e "$ERROR starship.toml NOT FOUND IN ./.dotfiles/ $NOCOLOR"
+	fi
+fi
+
 # Delete temp_folder if it's empty
 [ ! $(ls -A $temp_folder) ] && rm -fr $temp_folder
 
 
 # Install My Apps
 
-yay_programs=(fish cups eos-sddm-theme sddm feh ffmpeg fzf ranger imagemagick keepassxc lua python python-pip neofetch noto-fonts tree sxlock-git ntfs-3g)
+yay_programs=(fish cups eos-sddm-theme sddm feh ffmpeg fzf ranger imagemagick keepassxc lua python python-pip neofetch tree sxlock-git ntfs-3g)
 
 flatpak_programs=(com.discordapp.Discord com.spotify.Client org.kde.kdenlive org.kde.krita)
 
