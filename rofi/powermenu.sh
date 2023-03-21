@@ -16,8 +16,8 @@ $shutdown" | rofi -dmenu\
                   -i\
                   -p "Power"\
                   -config "~/.config/rofi/powermenu.rasi"\
-                  -font "Cascadia Code 12"\
-                  -width "15"\
+                  -font "Cascadia Code PL 16"\
+                  -width "32"\
                   -lines 5\
                   -line-margin 3\
                   -line-padding 10\
