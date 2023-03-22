@@ -15,8 +15,8 @@ vim.g.mapleader = " "
 
 -- install and load plugins
 --vim.cmd.source { args = { "./pluggos.vim" }
-require "appearance"
 require "pluggos"
+require "appearance"
 
 require "user.lualine"
 require "user.ncmp"
