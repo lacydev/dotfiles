@@ -4,20 +4,22 @@ ERROR='\033[0;31m'
 SUCCESS='\033[1;32m'
 NOCOLOR='\033[0m'
 
-# We'll need git...
+# We'll need yay
+command -v yay >/dev/null 2>&1 && echo Yay is already installed \
+		|| pacman -S yay
+
+# Also git
 command -v git >/dev/null 2>&1 && echo Git is already installed \
 	|| yay -S git
-
-# Make sure we're working at home (heh)
-# cd $HOME/
 
 # Temp folder for existing files
 temp_folder="$HOME/Desktop/lost_and_found_$(date +'%Y%m%d%H%M%S')"
 mkdir $temp_folder
 
-# Clone dotfiles repo
-[ -d $HOME/.dotfiles/ ] && mv $HOME/.dotfiles $temp_folder
-git clone git@github.com:miltsghostrehab/dotfiles_1.git ~/.dotfiles
+# Clone dotfiles repo -- TODO this repo no longer exists; replace the link plz
+#if [ ! -d $HOME/.dotfiles/ ]; then 
+	#git clone git@github.com:miltsghostrehab/dotfiles_1.git ~/.dotfiles
+#fi
 
 # Symlinks
 dotfiles_in_home=(fehbg bashrc)
@@ -96,9 +98,15 @@ fi
 
 # Install My Apps
 
-yay_programs=(fish cups eos-sddm-theme sddm feh ffmpeg fzf ranger imagemagick keepassxc lua python python-pip neofetch tree sxlock-git ntfs-3g)
+yay_programs=(alacritty appimagelauncher aseprite bat blender chromium \
+	cups exfatprogs feh ffmpeg firefox fish flatpak flameshot godot htop \
+	hugo imagemagick keepassxc love lua ncdu neofetch neovim neovim-qt \
+	ntfs-3g obs-studio python python-pip qbittorrent qtile ranger rofi \
+	thunderbird tiled timidity++ tree ttf-google-fonts-typewolf turtl vlc \
+	xclip yt-dlp)
 
-flatpak_programs=(com.discordapp.Discord com.spotify.Client org.kde.kdenlive org.kde.krita)
+flatpak_programs=(com.discordapp.Discord com.spotify.Client org.kde.kdenlive \
+	org.kde.krita org.libreoffice.LibreOffice)
 
 yay -Syu
 
