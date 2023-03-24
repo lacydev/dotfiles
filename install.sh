@@ -4,6 +4,9 @@ ERROR='\033[0;31m'
 SUCCESS='\033[1;32m'
 NOCOLOR='\033[0m'
 
+# fix time issue with Windows dual boot
+timedatectl set-local-rtc 1 --adjust-system-clock
+
 # We'll need yay
 command -v yay >/dev/null 2>&1 && echo Yay is already installed \
 		|| pacman -S yay
@@ -112,6 +115,6 @@ done
 
 for fp in "${flatpak_programs[@]}"; do
 	flatpak info $fp
-	flatpak install $fp
+	flatpak install -y --noninteractive $fp
 done
 
