@@ -60,7 +60,7 @@ keys = [
 	Key([mod], "w", lazy.spawn(window_list), desc="View currently open windows"),
 ]
 
-groups = [Group(i) for i in "1234567890"]
+groups = [Group(i) for i in "123456789"]
 
 for i in groups:
 	keys.extend(
