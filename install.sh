@@ -13,13 +13,13 @@ command -v git >/dev/null 2>&1 && echo Git is already installed \
 	|| yay -S git
 
 # Temp folder for existing files
-temp_folder="$HOME/Desktop/lost_and_found_$(date +'%Y%m%d%H%M%S')"
-mkdir $temp_folder
+# temp_folder="$HOME/Desktop/lost_and_found_$(date +'%Y%m%d%H%M%S')"
+# mkdir $temp_folder
 
-# Clone dotfiles repo -- TODO this repo no longer exists; replace the link plz
-#if [ ! -d $HOME/.dotfiles/ ]; then 
-	#git clone git@github.com:miltsghostrehab/dotfiles_1.git ~/.dotfiles
-#fi
+# git dotfiles
+if [ ! -d $HOME/.dotfiles/ ]; then 
+	git clone /run/media/lacy/FAYE_FAYE/dotfiles.git ~/.dotfiles
+fi
 
 # Symlinks
 dotfiles_in_home=(fehbg bashrc)
@@ -82,33 +82,29 @@ then
 	else
 		mv $star_conf "$Home/Desktop/"
 	fi
-
-	if [[ -f $star_dot ]]
-	then
-		ln -s $star_dot $star_conf
-		echo -e "starship.toml --> $star_conf$SUCCESS SUCCESS $NOCOLOR"
-	else
-		echo -e "$ERROR starship.toml NOT FOUND IN ./.dotfiles/ $NOCOLOR"
-	fi
 fi
 
-# Delete temp_folder if it's empty
-[ ! $(ls -A $temp_folder) ] && rm -fr $temp_folder
-
+if [[ -f $star_dot ]]
+then
+	ln -s $star_dot $star_conf
+	echo -e "starship.toml --> $star_conf$SUCCESS SUCCESS $NOCOLOR"
+else
+	echo -e "$ERROR starship.toml NOT FOUND IN ./.dotfiles/ $NOCOLOR"
+fi
 
 # Install My Apps
 
-yay_programs=(alacritty appimagelauncher aseprite bat blender chromium \
-	cups exfatprogs feh ffmpeg firefox fish flatpak flameshot godot htop \
-	hugo imagemagick keepassxc love lua ncdu neofetch neovim neovim-qt \
-	ntfs-3g obs-studio python python-pip qbittorrent qtile ranger rofi \
-	thunderbird tiled timidity++ tree ttf-google-fonts-typewolf turtl vlc \
-	xclip yt-dlp)
-
-flatpak_programs=(com.discordapp.Discord com.spotify.Client org.kde.kdenlive \
-	org.kde.krita org.libreoffice.LibreOffice)
-
 yay -Syu
+
+yay_programs=()
+flatpak_programs=()
+
+while IFS="," read -r pk name; do
+	case $pk in
+		F) flatpak_programs+=("$name"); ;;
+		Y) yay_programs+=("$name"); ;;
+	esac;
+done < <(tail -n +2 apps.csv)
 
 for yp in "${yay_programs[@]}"; do
 	yay -S --noconfirm $yp
