@@ -14,6 +14,8 @@ mod = "mod4"
 terminal = "alacritty"
 launcher = "rofi -show run"
 window_list = "rofi -show window"
+web="firefox"
+web2="chromium"
 
 keys = [
 	# A list of available commands that can be bound to keys can be found
@@ -58,9 +60,10 @@ keys = [
 	# Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 	Key([mod], "r", lazy.spawn(launcher), desc="Spawn the launcher"),
 	Key([mod], "w", lazy.spawn(window_list), desc="View currently open windows"),
+	Key([mod], "f", lazy.spawn(web), desc="Open web browser"),
 ]
 
-groups = [Group(i) for i in "123456789"]
+groups = [Group(i) for i in "1234567890"]
 
 for i in groups:
 	keys.extend(

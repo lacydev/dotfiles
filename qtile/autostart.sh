@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 
-polybar &
+# polybar &
+for mon in $(polybar --list-monitors | cut -d":" -f1); do
+	MONITOR=$mon polybar --reload bar1 &
+done
 
 ~/.fehbg &
 
