@@ -60,4 +60,4 @@ require('neoclip').setup({
 	},
 })
 
-vim.keymap.set("n", "<c-p>", neoclip.default, {})
+vim.keymap.set("n", "<c-r>", neoclip.default, {})
