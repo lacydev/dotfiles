@@ -11,7 +11,7 @@ def autostart():
 	subprocess.Popen([home])
 
 mod = "mod4"
-term = "alacritty"
+term = "alacritty -e tmux attach -t TMUX || tmux new -s TMUX"
 launch = "rofi -show combi"
 web="firefox"
 web2="chromium"
@@ -19,6 +19,7 @@ music="spotify"
 file="nemo"
 passwd="keepassxc"
 locks="cinnamon-screensaver-command -l -m 'You are dead'"
+power="rofi -show power-menu -modi power-menu:rofi-power-menu"
 
 color_background = "#2e2e2e"
 color_comments = "#797979"
@@ -57,10 +58,11 @@ keys = [
 	Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
 	Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
 	Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-	Key([mod], "Tab", lazy.layout.next(), desc="Move window focus to next window"),
-	Key([mod, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to previous window"),
+	# Key([mod], "Tab", lazy.layout.next(), desc="Move window focus to next window"),
+	# Key([mod, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to previous window"),
 
-	Key([], "F10", lazy.next_layout(), desc="Toggle between layouts"),
+	Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+	Key([mod], "Space", lazy.window.toggle_floating(), desc="Toggle between layouts"),
 
 	Key(
 		[mod, "shift"],
@@ -72,8 +74,9 @@ keys = [
 	# session.
 	Key([mod], "Backspace", lazy.window.kill(), desc="Kill focused window"),
 	Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-	Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+	# Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 	Key([mod, "control"], "l", lazy.spawn(locks), "Don\'t forget to lock up when you\'re done."),
+	Key([mod, "control"], "q", lazy.spawn(power), "Power menu"),
 
 	# apps.
 	Key([mod], "Return", lazy.spawn(term), desc="Launch terminal"),
@@ -91,6 +94,9 @@ keys = [
 	Key([], "XF86AudioPlay", lazy.spawn("playerctl -i " + pctlignore + " play-pause"), desc="Toggle play/pause"),
 	Key([], "XF86AudioPrev", lazy.spawn("playerctl -i " + pctlignore + " previous"), desc="Play previous song in playlist"),
 	Key([], "XF86AudioNext", lazy.spawn("playerctl -i " + pctlignore + " next"), desc="Play next song in playlist"),
+
+	# screengrab.
+	Key([], "Print", lazy.spawn("gnome-screenshot -i"), desc="Screenshot dialog"),
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -171,6 +177,7 @@ floating_layout = layout.Floating(
 		Match(wm_class="ssh-askpass"),	# ssh-askpass
 		Match(title="branchdialog"),  # gitk
 		Match(title="pinentry"),  # GPG key password entry
+		Match(wm_class=["nemo-preview-start"]),
 	]
 )
 auto_fullscreen = True

@@ -2,3 +2,4 @@ nvim*/autoload/
 nvim*/plugged/
 __pycache__/
 *.zip
+_fzf_*

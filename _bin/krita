@@ -1,4 +1,0 @@
-#!/usr/bin/env fish
-
-nohup (flatpak run org.kde.krita) &> /dev/null &
-

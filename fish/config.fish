@@ -5,8 +5,11 @@ end
 starship init fish | source
 
 # Variables
-set -U EDITOR (type -p nvim)
 set -gx fish_prompt_pwd_dir_length 1
 
 fish_add_path ~/.local/bin/
 
+# Aliases
+alias ls="exa -F --icons"
+alias ll="exa -lg --icons"
+alias la="exa -lag --icons"

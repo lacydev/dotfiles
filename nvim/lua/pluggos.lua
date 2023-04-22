@@ -24,10 +24,8 @@ require "paq" {
 	"nvim-lua/plenary.nvim";
 	{ "nvim-telescope/telescope.nvim", { tag = "0.1.1" }, requires = { "nvim-lua/plenary.nvim" } };
 	{ "AckslD/nvim-neoclip.lua", requires = "nvim-telescope/telescope.nvim" };
-	-- "nvim-telescope/telescope-file-browser.nvim";
-
-	-- if I don't like telescope explorer...
 	"nvim-tree/nvim-tree.lua";
+	"airblade/vim-rooter";
 
 
 -- completion

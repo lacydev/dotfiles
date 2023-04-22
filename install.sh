@@ -26,7 +26,7 @@ fi
 
 # Symlinks
 dotfiles_in_home=(fehbg bashrc)
-dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi)
+dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi polybar stalonetrayrc)
 
 
 for file in "${dotfiles_in_home[@]}"; do
@@ -63,7 +63,7 @@ for folder in "${dotfiles_in_xdg_config[@]}"; do
 			mv $target "$HOME/Desktop/"
 		fi
 	fi
-	if [[ -d $dot ]]
+	if [[ -d $dot ]] || [[ -f $dot ]]
 	then
 		ln -s $dot $target
 		echo -e "./$folder/ --> $target$SUCCESS SUCCESS $NOCOLOR"

@@ -1,3 +1,0 @@
-#!/usr/bin/env fish
-
-nohup (AppImageLauncher $HOME/.local/bin/appimages/audacity-linux-3.2.3-x64_1fcc74f72bb4fbd76b1dfee02ea304ef.AppImage) &> /dev/null &
