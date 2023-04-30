@@ -26,7 +26,7 @@ fi
 
 # Symlinks
 dotfiles_in_home=(fehbg bashrc)
-dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi polybar stalonetrayrc)
+dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi polybar starship.toml)
 
 
 for file in "${dotfiles_in_home[@]}"; do
@@ -54,7 +54,7 @@ done
 for folder in "${dotfiles_in_xdg_config[@]}"; do
 	dot="$HOME/.dotfiles/${folder}"
 	target="$HOME/.config/${folder}"
-	if [[ -d $target ]]
+	if [[ -d $target ]] || [[ -f $target ]]
 	then
 		if [[ -L $target ]]
 		then
@@ -72,28 +72,6 @@ for folder in "${dotfiles_in_xdg_config[@]}"; do
 	fi
 done
 
-# Symlinks -- SPECIAL CASES
-
-star_conf="$HOME/.config/starship.toml" 
-star_dot="$HOME/.dotfiles/starship.toml" 
-
-if [[ -f $star_conf ]]
-then
-	if [[ -L $star_conf ]]
-	then
-		unlink $star_conf
-	else
-		mv $star_conf "$Home/Desktop/"
-	fi
-fi
-
-if [[ -f $star_dot ]]
-then
-	ln -s $star_dot $star_conf
-	echo -e "starship.toml --> $star_conf$SUCCESS SUCCESS $NOCOLOR"
-else
-	echo -e "$ERROR starship.toml NOT FOUND IN ./.dotfiles/ $NOCOLOR"
-fi
 
 # Install My Apps
 

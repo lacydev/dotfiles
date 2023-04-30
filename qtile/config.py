@@ -11,7 +11,7 @@ def autostart():
 	subprocess.Popen([home])
 
 mod = "mod4"
-term = "alacritty -e tmux attach -t TMUX || tmux new -s TMUX"
+term = "alacritty"
 launch = "rofi -show combi"
 web="firefox"
 web2="chromium"
@@ -58,11 +58,11 @@ keys = [
 	Key([mod], "l", lazy.layout.right(), desc="Move focus to right"),
 	Key([mod], "j", lazy.layout.down(), desc="Move focus down"),
 	Key([mod], "k", lazy.layout.up(), desc="Move focus up"),
-	# Key([mod], "Tab", lazy.layout.next(), desc="Move window focus to next window"),
-	# Key([mod, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to previous window"),
+	Key([mod], "Tab", lazy.layout.next(), desc="Move window focus to next window"),
+	Key([mod, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to previous window"),
 
-	Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-	Key([mod], "Space", lazy.window.toggle_floating(), desc="Toggle between layouts"),
+	Key([mod], "Space", lazy.next_layout(), desc="Toggle between layouts"),
+	Key([mod, "control"], "Space", lazy.window.toggle_floating(), desc="Toggle between layouts"),
 
 	Key(
 		[mod, "shift"],
