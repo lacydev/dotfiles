@@ -13,3 +13,6 @@ fish_add_path ~/.local/bin/
 alias ls="exa -F --icons"
 alias ll="exa -lg --icons"
 alias la="exa -lag --icons"
+
+# tmux
+tmux set-option -g mouse on

@@ -11,15 +11,21 @@ def autostart():
 	subprocess.Popen([home])
 
 mod = "mod4"
-term = "alacritty"
+# system apps
+term = "alacritty -e byobu"
+sysmon="gnome-system-monitor"
 launch = "rofi -show combi"
+file="nemo"
+locks="cinnamon-screensaver-command -l -m 'You are dead'"
+power="rofi -show power-menu -modi power-menu:rofi-power-menu"
+# default apps
 web="firefox"
 web2="chromium"
 music="spotify"
-file="nemo"
 passwd="keepassxc"
-locks="cinnamon-screensaver-command -l -m 'You are dead'"
-power="rofi -show power-menu -modi power-menu:rofi-power-menu"
+# screen apps
+grab="flameshot gui"
+# rec="kazam"
 
 color_background = "#2e2e2e"
 color_comments = "#797979"
@@ -61,8 +67,8 @@ keys = [
 	Key([mod], "Tab", lazy.layout.next(), desc="Move window focus to next window"),
 	Key([mod, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to previous window"),
 
-	Key([mod], "Space", lazy.next_layout(), desc="Toggle between layouts"),
-	Key([mod, "control"], "Space", lazy.window.toggle_floating(), desc="Toggle between layouts"),
+	Key([mod, "mod1"], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+	Key([mod], "Space", lazy.window.toggle_floating(), desc="Toggle between layouts"),
 
 	Key(
 		[mod, "shift"],
@@ -96,7 +102,11 @@ keys = [
 	Key([], "XF86AudioNext", lazy.spawn("playerctl -i " + pctlignore + " next"), desc="Play next song in playlist"),
 
 	# screengrab.
-	Key([], "Print", lazy.spawn("gnome-screenshot -i"), desc="Screenshot dialog"),
+	Key([], "Print", lazy.spawn(grab), desc="Screenshot dialog"),
+	# Key(["shift"], "Print", lazy.spawn(rec), desc="Screen Record dialog"),
+
+	# system.
+	Key(["shift", "control"], "Escape", lazy.spawn(sysmon), desc="Launch system monitor"),
 ]
 
 groups = [Group(i) for i in "1234567890"]
@@ -178,6 +188,7 @@ floating_layout = layout.Floating(
 		Match(title="branchdialog"),  # gitk
 		Match(title="pinentry"),  # GPG key password entry
 		Match(wm_class=["nemo-preview-start"]),
+		Match(wm_class=["Godot_ProjectList"]),
 	]
 )
 auto_fullscreen = True
