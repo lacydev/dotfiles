@@ -22,7 +22,7 @@ require "user.lualine"
 require "user.ncmp"
 require "user.neoclip"
 require "user.telescop"
-require "user.ntree"
+require "user.nvim-tree"
 require "user.treesitters"
 
 -- lsp

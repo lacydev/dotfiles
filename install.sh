@@ -85,7 +85,7 @@ while IFS="," read -r pk name; do
 		F) flatpak_programs+=("$name"); ;;
 		Y) yay_programs+=("$name"); ;;
 	esac;
-done < <(tail -n +2 apps.csv)
+done < <(tail -n +2 "$HOME/.dotfiles/apps.csv")
 
 for yp in "${yay_programs[@]}"; do
 	yay -S --noconfirm $yp

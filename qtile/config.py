@@ -19,8 +19,8 @@ file="nemo"
 locks="cinnamon-screensaver-command -l -m 'You are dead'"
 power="rofi -show power-menu -modi power-menu:rofi-power-menu"
 # default apps
-web="firefox"
-web2="chromium"
+web2="firefox"
+web="chromium"
 music="spotify"
 passwd="keepassxc"
 # screen apps

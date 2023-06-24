@@ -18,12 +18,37 @@ local function open_nvim_tree(data)
 	require "nvim-tree.api".tree.open()
 end
 
+local function my_on_attach(bufnr)
+  local api = require('nvim-tree.api')
+
+  local function opts(desc)
+    return { desc = 'nvim-tree: ' .. desc, buffer = bufnr, noremap = true, silent = true, nowait = true }
+  end
+
+  -- You might tidy things by removing these along with their default mapping.
+  vim.keymap.set('n', '<Tab>', '', { buffer = bufnr })
+  vim.keymap.del('n', '<Tab>', { buffer = bufnr })
+
+
+  -- Mappings migrated from view.mappings.list
+  --
+  -- You will need to insert "your code goes here" for any mappings with a custom action_cb
+  vim.keymap.set('n', '<a-Up>', api.node.navigate.parent_close, opts('Close Directory'))
+  vim.keymap.set('n', 'h', api.node.navigate.parent_close, opts('Close Directory'))
+  vim.keymap.set('n', '<a-Down>', api.node.open.no_window_picker, opts('Open: No Window Picker'))
+  vim.keymap.set('n', 'l', api.node.open.no_window_picker, opts('Open: No Window Picker'))
+  vim.keymap.set('n', '<Esc>', api.tree.close, opts('Close'))
+  vim.keymap.set('n', '<Space>', api.node.open.preview, opts('Open Preview'))
+
+end
+
 vim.api.nvim_create_autocmd({ "VimEnter" }, { callback = open_nvim_tree })
 
 local HEIGHT_RATIO = 0.9
 local WIDTH_RATIO = 0.6
 
 require "nvim-tree".setup({
+	on_attach = my_on_attach,
 	disable_netrw = true,
 	hijack_netrw = true,
 	-- respect_buf_cwd = true,
@@ -31,20 +56,21 @@ require "nvim-tree".setup({
 	sort_by = "case_sensitive",
 	reload_on_bufenter = true,
 	auto_reload_on_write = true,
-	remove_keymaps = { "<Tab>" },
+	-- remove_keymaps = { "<Tab>" },        -- deprecated
 	view = {
 		width = function()
 			return math.floor(vim.opt.columns:get() * WIDTH_RATIO)
 		end,
-		mappings = {
-			list = {
-				{ key = "<a-Up>", action = "close_node" },
-				{ key = "h", action = "close_node" },
-				{ key = "<a-Down>", action = "edit_no_picker" },
-				{ key = "l", action = "edit_no_picker" },
-				{ key = "<Esc>", action = "close" },
-				},
-			},
+		-- deprecated mapping system
+		-- mappings = {
+		-- 	list = {
+		-- 		{ key = "<a-Up>", action = "close_node" },
+		-- 		{ key = "h", action = "close_node" },
+		-- 		{ key = "<a-Down>", action = "edit_no_picker" },
+		-- 		{ key = "l", action = "edit_no_picker" },
+		-- 		{ key = "<Esc>", action = "close" },
+		-- 		},
+		-- 	},
 		float = {
 			enable = true,
 			open_win_config = function()

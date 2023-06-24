@@ -2,6 +2,7 @@
 
 set target "$HOME/.local/bin/"
 
+mkdir $target
 
 for b in $HOME/.dotfiles/_bin/*
     if test -e $target(basename $b)
