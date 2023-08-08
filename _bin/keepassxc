@@ -1,0 +1,6 @@
+#!/usr/bin/env fish
+
+wmctrl -a "KeePassXC" || nohup /usr/bin/keepassxc &> /dev/null &
+
+
+

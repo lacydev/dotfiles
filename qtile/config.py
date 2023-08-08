@@ -11,6 +11,7 @@ def autostart():
 	subprocess.Popen([home])
 
 mod = "mod4"
+jump = "jumpapp -C"
 # system apps
 term = "alacritty -e byobu"
 sysmon="gnome-system-monitor"
@@ -19,13 +20,13 @@ file="nemo"
 locks="cinnamon-screensaver-command -l -m 'You are dead'"
 power="rofi -show power-menu -modi power-menu:rofi-power-menu"
 # default apps
-web2="firefox"
-web="chromium"
+web="firefox"
+web2="chromium"
 music="spotify"
 passwd="keepassxc"
 # screen apps
 grab="flameshot gui"
-# rec="kazam"
+#rec="kazam"
 
 color_background = "#2e2e2e"
 color_comments = "#797979"
@@ -67,7 +68,7 @@ keys = [
 	Key([mod], "Tab", lazy.layout.next(), desc="Move window focus to next window"),
 	Key([mod, "shift"], "Tab", lazy.layout.previous(), desc="Move window focus to previous window"),
 
-	Key([mod, "mod1"], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+	Key([mod], "z", lazy.next_layout(), desc="Toggle between layouts"),
 	Key([mod], "Space", lazy.window.toggle_floating(), desc="Toggle between layouts"),
 
 	Key(
@@ -85,11 +86,11 @@ keys = [
 	Key([mod, "control"], "q", lazy.spawn(power), "Power menu"),
 
 	# apps.
-	Key([mod], "Return", lazy.spawn(term), desc="Launch terminal"),
+	Key([mod], "Return", lazy.spawn(jump + " " + term), desc="Launch terminal"),
 	Key([mod], "r", lazy.spawn(launch), desc="Spawn the launcher"),
-	Key([mod], "f", lazy.spawn(web), desc="Open web browser"),
-	Key([mod], "n", lazy.spawn(file), desc="Open file manager"),
-	Key([mod], "m", lazy.spawn(music), desc="Open music player"),
+	Key([mod], "f", lazy.spawn(jump + " " + web), desc="Open web browser"),
+	Key([mod], "n", lazy.spawn(jump + " " + file), desc="Open file manager"),
+	Key([mod], "m", lazy.spawn(jump + " " + music), desc="Open music player"),
 	Key([mod], "p", lazy.spawn(passwd), desc="Open password manager"),
 
 	# media controls.
@@ -106,7 +107,7 @@ keys = [
 	# Key(["shift"], "Print", lazy.spawn(rec), desc="Screen Record dialog"),
 
 	# system.
-	Key(["shift", "control"], "Escape", lazy.spawn(sysmon), desc="Launch system monitor"),
+	Key(["shift", "control"], "Escape", lazy.spawn(jump + " " + sysmon), desc="Launch system monitor"),
 ]
 
 groups = [Group(i) for i in "1234567890"]

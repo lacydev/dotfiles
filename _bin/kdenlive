@@ -1,3 +1,0 @@
-#!/usr/bin/env fish
-
-nohup (flatpak run org.kde.kdenlive) &> /dev/null &

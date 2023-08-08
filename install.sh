@@ -25,7 +25,7 @@ if [ ! -d $HOME/.dotfiles/ ]; then
 fi
 
 # Symlinks
-dotfiles_in_home=(fehbg bashrc)
+dotfiles_in_home=(fehbg bashrc gitconfig)
 dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi polybar starship.toml)
 
 
@@ -72,6 +72,29 @@ for folder in "${dotfiles_in_xdg_config[@]}"; do
 	fi
 done
 
+# xinput conf for tablet
+
+xinput_conf="$HOME/.dotfiles/xinput/52-tablet.conf"
+xinput_link="/etc/X11/xorg.conf.d/52-tablet.conf"
+
+if [[ -f $xinput_link ]]
+then
+	if [[ -L $xinput_link ]]
+	then
+		sudo unlink $xinput_link
+	else
+		sudo mv $xinput_link "$HOME/Desktop"
+	fi
+fi
+if [[ -f $xinput_conf ]]
+then
+	sudo ln -s $xinput_conf $xinput_link
+	echo -e "$xinput_conf --> $xinput_link$SUCCESS SUCCESS $NOCOLOR"
+else
+	echo -e "$ERROR$xinput_conf NOT FOUND... $NOCOLOR"
+fi
+	fi
+fi
 
 # Install My Apps
 
@@ -88,7 +111,7 @@ while IFS="," read -r pk name; do
 done < <(tail -n +2 "$HOME/.dotfiles/apps.csv")
 
 for yp in "${yay_programs[@]}"; do
-	yay -S --noconfirm $yp
+	yay -S --noconfirm --needed $yp
 done
 
 for fp in "${flatpak_programs[@]}"; do

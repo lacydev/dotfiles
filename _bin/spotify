@@ -1,5 +1,0 @@
-#!/usr/bin/env fish
-
-nohup (flatpak run com.spotify.Client) &> /dev/null &
-# nohup (qutebrowser "https://open.spotify.com/?") &> /dev/null &
-
