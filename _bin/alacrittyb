@@ -1,0 +1,6 @@
+#!/usr/bin/env fish
+
+wmctrl -R "byobu" || nohup /usr/bin/alacritty -e /usr/bin/byobu </dev/null >/dev/null 2>&1 &
+
+
+

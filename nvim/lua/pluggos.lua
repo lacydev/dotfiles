@@ -1,75 +1,68 @@
-#!/usr/bin/env lua
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+				vim.fn.system({
+								"git",
+								"clone",
+								"--filter=blob:none",
+								"https://github.com/folke/lazy.nvim.git",
+								"--branch=stable", -- latest stable release
+								lazypath,
+				})
+end
+vim.opt.rtp:prepend(lazypath)
 
--- ░▒█▀▀█░█░░█░▒█░█▀▀▀░▀█▀░█▀▀▄░█▀▀
--- ░▒█▄▄█░█░░█░▒█░█░▀▄░▒█░░█░▒█░▀▀▄
--- ░▒█░░░░▀▀░░▀▀▀░▀▀▀▀░▄█▄░▀░░▀░▀▀▀
+-- plugins
 
+require("lazy").setup({
+	-- lazy: plugin manager
 
--- Install paq if not found
--- TODO: learn how to bootstrap paq
+	"folke/lazy.nvim",
 
+	-- alpha: start screen
 
-require "paq" {
--- **required**
-	"savq/paq-nvim";
-
-
--- text editing
-	"tpope/vim-surround";
-	"tpope/vim-commentary";
-	"junegunn/vim-easy-align";
-
-
--- project navigation
-	"nvim-lua/plenary.nvim";
-	{ "nvim-telescope/telescope.nvim", { tag = "0.1.1" }, requires = { "nvim-lua/plenary.nvim" } };
-	{ "AckslD/nvim-neoclip.lua", requires = "nvim-telescope/telescope.nvim" };
-	"nvim-tree/nvim-tree.lua";
-	"airblade/vim-rooter";
-
-
--- completion
-	"hrsh7th/nvim-cmp";
-	"dcampos/nvim-snippy";
-	"hrsh7th/cmp-nvim-lsp";
-	"hrsh7th/cmp-buffer";
-	"hrsh7th/cmp-path";
-	"hrsh7th/cmp-cmdline";
-	"dcampos/cmp-snippy";
-
-
--- quality of life
-	"junegunn/vim-slash";
-	"junegunn/vim-peekaboo";
-	"tpope/vim-endwise";
-
-
--- syntx
-	"frazrepo/vim-rainbow";
-	"khaveesh/vim-fish-syntax";
-	"euclidianAce/BetterLua.vim";
-	"habamax/vim-godot";
-	"neovim/nvim-lspconfig";
 	{
-		'nvim-treesitter/nvim-treesitter',
-		run = function()
-			local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-			ts_update()
-		end,
-	};
+		"goolord/alpha-nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function ()
+			require("alpha").setup(require("alpha.themes.startify").config)
+		end
+	},
 
+	-- nvim-cmp: completions engine
 
--- window decorX
-	-- "vim-airline/vim-airline";
-	-- "vim-airline/vim-airline-themes";
-	 { "nvim-lualine/lualine.nvim", requires = { 'kyazdani42/nvim-web-devicons', opt = true } };
+	"neovim/nvim-lspconfig",
+	"hrsh7th/cmp-nvim-lsp",
+	"hrsh7th/cmp-buffer",
+	"hrsh7th/cmp-path",
+	"hrsh7th/cmp-cmdline",
+	"hrsh7th/nvim-cmp",
 
+	-- gitgutter: git tracking
+		
+	"airblade/vim-gitgutter",
 
--- pretty!
-	"kyazdani42/nvim-web-devicons";
-	"tomasr/molokai";
-	"morhetz/gruvbox";
-	"wojciechkepka/bogster";
-}
+	-- lualine: status bar
+	
+	{
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons", opt = true }
+	},
 
+	-- nvim-visual-multi: multi-cursor with <c-n> in visual mode
+	
+	"mg979/vim-visual-multi",
 
+	-- nvim-tree: file explorer
+	
+	"nvim-tree/nvim-tree.lua",
+
+	-- telescope: fuzzy finder for whatever!
+	
+	{
+		"nvim-telescope/telescope.nvim", tag = "0.1.3",
+			dependencies = { "nvim-lua/plenary.nvim" }
+	},
+	{"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
+	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
+
+})

@@ -190,6 +190,7 @@ floating_layout = layout.Floating(
 		Match(title="pinentry"),  # GPG key password entry
 		Match(wm_class=["nemo-preview-start"]),
 		Match(wm_class=["Godot_ProjectList"]),
+		Match(wm_class=["KeePassXC"]),
 	]
 )
 auto_fullscreen = True

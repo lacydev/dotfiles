@@ -3,3 +3,6 @@ nvim*/plugged/
 __pycache__/
 *.zip
 _fzf_*
+*.bak
+./nvim_vimscript/
+lazy-lock.json

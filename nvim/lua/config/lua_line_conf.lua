@@ -1,7 +1,7 @@
 require('lualine').setup {
 	options = {
 		icons_enabled = true,
-		theme = 'gruvbox',
+		theme = 'gruvbox_dark',
 		component_separators = { left = '', right = ''},
 		section_separators = { left = '', right = ''},
 		disabled_filetypes = {
@@ -25,19 +25,16 @@ require('lualine').setup {
 		lualine_y = {'progress'},
 		lualine_z = {'location'}
 	},
-	inactive_sections = {},
-	tabline = {
-		lualine_a = {'tabs'},
+	inactive_sections = {
+		lualine_a = {},
 		lualine_b = {},
-		lualine_c = {},
-		lualine_x = {},
+		lualine_c = {'filename'},
+		lualine_x = {'location'},
 		lualine_y = {},
-		lualine_z = {'buffers'}
+		lualine_z = {}
 	},
+	tabline = {},
 	winbar = {},
 	inactive_winbar = {},
 	extensions = {}
 }
-
--- to start; unsure if necessary with the above lines
--- require('lualine').setup()

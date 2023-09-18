@@ -1,8 +1,8 @@
--- disable netrw
+-- disable netrw for nvim-tree
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- set termguicikirs
+-- set termguicolors
 vim.opt.termguicolors = true
 
 -- clear vimrc autogroup
@@ -13,21 +13,11 @@ api.nvim_clear_autocmds({ group = vimrc_grp })
 -- set leader
 vim.g.mapleader = " "
 
--- install and load plugins
---vim.cmd.source { args = { "./pluggos.vim" }
-require "pluggos"
-require "appearance"
+-- install and load plugins using lazy
+require("pluggos")
+require("config.nvim_cmp_conf")
+require("config.lua_line_conf")
+require("config.nvim_tree_conf")
+require("config.telescope_conf")
 
-require "user.lualine"
-require "user.ncmp"
-require "user.neoclip"
-require "user.telescop"
-require "user.nvim-tree"
-require "user.treesitters"
-
--- lsp
-require "lspconfig".gdscript.setup{}
-
--- directly sourcing vimscript in modules (for now...)
-vim.cmd.runtime { args = { "vimscript/*.vim" } , bang=true }
-
+-- load config files
