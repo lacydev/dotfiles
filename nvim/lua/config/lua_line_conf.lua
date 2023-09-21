@@ -20,7 +20,20 @@ require('lualine').setup {
 	sections = {
 		lualine_a = {'mode'},
 		lualine_b = {'branch', 'diff', 'diagnostics'},
-		lualine_c = {'filename'},
+		lualine_c = {
+			{
+				'filename',
+				file_status = true,
+				newfile_status = true,
+				path = 1,
+				symbols = {
+					modified = '*',			 -- Text to show when the file is modified.
+					readonly = '',			 -- Text to show when the file is non-modifiable or readonly.
+					unnamed = '[NO NAME]', -- Text to show for unnamed buffers.
+					newfile = '[NEW]',		 -- Text to show for newly created file before first write
+				}
+			}
+		},
 		lualine_x = {'encoding', 'fileformat', 'filetype'},
 		lualine_y = {'progress'},
 		lualine_z = {'location'}
@@ -28,13 +41,28 @@ require('lualine').setup {
 	inactive_sections = {
 		lualine_a = {},
 		lualine_b = {},
-		lualine_c = {'filename'},
+		lualine_c = {
+			{
+				'filename',
+				file_status = true,
+				newfile_status = true,
+				path = 1,
+				symbols = {
+					modified = '*',			 -- Text to show when the file is modified.
+					readonly = '',			 -- Text to show when the file is non-modifiable or readonly.
+					unnamed = '[NO NAME]', -- Text to show for unnamed buffers.
+					newfile = '[NEW]',		 -- Text to show for newly created file before first write
+				}
+			}
+		},
 		lualine_x = {'location'},
 		lualine_y = {},
 		lualine_z = {}
 	},
 	tabline = {},
 	winbar = {},
+
 	inactive_winbar = {},
+
 	extensions = {}
 }

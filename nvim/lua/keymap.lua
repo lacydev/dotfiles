@@ -1,6 +1,6 @@
 -- console
 vim.keymap.set('n', ';', ':', { desc = "Swap : with ; for ease of use" })
-vim.keymap.set('n', ':', ';', { desc = "Swap ; with :" })
+vim.keymap.set('v', ';', ':', { desc = "Swap : with ; for ease of use" })
 
 
 -- nav
@@ -20,12 +20,12 @@ vim.keymap.set('n', '<C-d>', 'zz<C-d>', { desc = "Center cursor on page down" })
 vim.keymap.set('n', 'U', '<C-r>', { desc = "Redo" })
 
 
--- window 
-vim.keymap.set('n', '<Tab>', '<C-w>w', { desc = "Activate next pane" })
-vim.keymap.set('n', '<S-Tab>', '<C-w>W', { desc = "Activate previous pane" })
-
-
 -- tabs
-vim.keymap.set('n', '<C-w><Tab>', ':$tabnew<cr>', { silent = true, desc = "Create new tab (with current file)" })
+vim.keymap.set('n', 'gT', ':$tabnew<cr>', { remap = false, silent = false, desc = "Create new tab (with current file)" })
 
-vim.keymap.set('n', '<C-Tab>', ':tabnext<CR>', { silent = true, desc = "Go to next tab" })
+
+-- indentation
+vim.keymap.set('n', '<C-h>', '<<', { desc = "Decrease indentation" } )
+vim.keymap.set('n', '<C-l>', '>>', { desc = "Increase indentation" } )
+vim.keymap.set('v', '<C-h>', '<<gv', { desc = "Decrease indentation (Visual)" } )
+vim.keymap.set('v', '<C-l>', '>>gv', { desc = "Increase indentation (Visual)" } )
