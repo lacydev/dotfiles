@@ -26,7 +26,7 @@ fi
 
 # Symlinks
 dotfiles_in_home=(fehbg bashrc gitconfig)
-dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi polybar starship.toml)
+dotfiles_in_xdg_config=(alacritty fish nvim qtile rofi picom polybar starship.toml)
 
 
 for file in "${dotfiles_in_home[@]}"; do
@@ -39,7 +39,7 @@ for file in "${dotfiles_in_home[@]}"; do
 		then
 			unlink $target
 		else
-			mv $target "$HOME/Desktop/"
+			mv $target $target.old
 		fi
 	fi
 	if [[ -f $dot ]]
@@ -60,7 +60,7 @@ for folder in "${dotfiles_in_xdg_config[@]}"; do
 		then
 			unlink $target
 		else
-			mv $target "$HOME/Desktop/"
+			mv $target $target.old
 		fi
 	fi
 	if [[ -d $dot ]] || [[ -f $dot ]]
@@ -74,27 +74,34 @@ done
 
 # xinput conf for tablet
 
-xinput_conf="$HOME/.dotfiles/xinput/52-tablet.conf"
-xinput_link="/etc/X11/xorg.conf.d/52-tablet.conf"
+# xinput_conf="$HOME/.dotfiles/xinput/52-tablet.conf"
+# xinput_link="/etc/X11/xorg.conf.d/52-tablet.conf"
+#
+# if [[ -f $xinput_link ]]
+# then
+# 	if [[ -L $xinput_link ]]
+# 	then
+# 		sudo unlink $xinput_link
+# 	else
+# 		sudo mv $xinput_link "$HOME/Desktop"
+# 	fi
+# fi
+# if [[ -f $xinput_conf ]]
+# then
+# 	sudo ln -s $xinput_conf $xinput_link
+# 	echo -e "$xinput_conf --> $xinput_link$SUCCESS SUCCESS $NOCOLOR"
+# else
+# 	echo -e "$ERROR$xinput_conf NOT FOUND... $NOCOLOR"
+# fi
 
-if [[ -f $xinput_link ]]
-then
-	if [[ -L $xinput_link ]]
-	then
-		sudo unlink $xinput_link
-	else
-		sudo mv $xinput_link "$HOME/Desktop"
-	fi
-fi
-if [[ -f $xinput_conf ]]
-then
-	sudo ln -s $xinput_conf $xinput_link
-	echo -e "$xinput_conf --> $xinput_link$SUCCESS SUCCESS $NOCOLOR"
-else
-	echo -e "$ERROR$xinput_conf NOT FOUND... $NOCOLOR"
-fi
-	fi
-fi
+# Option to Bypass Installation
+echo ""
+read -p "Shall I install your apps (y/n)? " choice
+echo ""
+case "$choice" in
+  y|Y ) echo "Installing apps...";;
+  * ) exit 9;;
+esac
 
 # Install My Apps
 
@@ -119,3 +126,18 @@ for fp in "${flatpak_programs[@]}"; do
 	flatpak install -y --noninteractive $fp
 done
 
+# Set up AwesomeWM
+
+if command -v awesome &> /dev/null
+then
+  if [ ! -d "~/.config/awesome/themes/" ]
+  then
+    git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
+    mv -bv awesome-copycats/* ~/.config/awesome; rm -rf awesome-copycats
+  fi
+
+	dot="$HOME/.dotfiles/${folder}"
+	target="$HOME/.config/${folder}"
+  ln -s ~/.dotfiles/awesome/rc.lua ~/.config/awesome/rc.lua
+  ln -s ~/.dotfiles/awesome/theme-personal.lua ~/.config/awesome/themes/powerarrow/theme-personal.lua
+fi

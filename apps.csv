@@ -1,6 +1,7 @@
 Y,alacritty
 Y,appimagelauncher
 Y,aseprite
+Y,awesome
 Y,bat
 Y,blender
 Y,byobu
@@ -35,12 +36,11 @@ Y,nodejs
 Y,ntfs-3g
 Y,obs-studio
 Y,perl
+Y,picom-git
 Y,playerctl
-Y,polybar
 Y,python
 Y,python-pip
 Y,qbittorrent
-Y,qtile
 Y,ranger
 Y,ripgrep
 Y,rofi
@@ -53,6 +53,7 @@ Y,tree
 Y,ttf-google-fonts-typewolf
 Y,ttf-mononoki-nerd
 Y,turtl
+Y,vivaldi-stable
 Y,vlc
 Y,xclip
 Y,yt-dlp

@@ -15,17 +15,17 @@ vim.g.mapleader = " "
 
 -- install and load plugins using lazy
 require("pluggos")
-require("config.barbecue_conf")
-require("config.bufferline_conf")
-require("config.comment_nvim_conf")
-require("config.jellybeans_conf")
-require("config.lua_line_conf")
-require("config.nvim_cmp_conf")
-require("config.nvim_colorizer_conf")
-require("config.nvim_surround_conf")
-require("config.nvim_tree_conf")
-require("config.telescope_conf")
-require("config.toffleterm_conf")
+require("plug.barb")
+require("plug.buffline")
+require("plug.colorz")
+require("plug.comp")
+require("plug.gcc")
+require("plug.jb")
+require("plug.line")
+require("plug.surround")
+require("plug.tele")
+require("plug.term")
+require("plug.tree")
 
 -- load config files
 require("appearance")
