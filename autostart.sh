@@ -1,5 +1,8 @@
 #!/usr/bin/env sh
 
+# playerctl daemon
+playerctld daemon
+
 # picom for fancy graphics
 picom &
 

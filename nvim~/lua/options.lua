@@ -14,6 +14,9 @@ vim.opt.relativenumber = true
 vim.opt.splitright = true
 
 -- tabbing
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
-vim.opt.expandtab = true
+vim.opt.tabstop = 3
+vim.opt.shiftwidth = 3
+vim.opt.expandtab = false
+
+-- format
+vim.opt.textwidth = 128

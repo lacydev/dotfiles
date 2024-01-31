@@ -1,37 +1,94 @@
--- disable netrw at the very start of your init.lua
+--
+--   ░▒█░░░░█▀▀▄░█▀▄░█░░█░░░▒█░░░░▄▀▀▄░▄░░░▄░█▀▀░█▀▀░░░▒█░░▒█░░▀░░█▀▄▀█
+--   ░▒█░░░░█▄▄█░█░░░█▄▄█░░░▒█░░░░█░░█░░█▄█░░█▀▀░▀▀▄░░░░▒█▒█░░░█▀░█░▀░█
+--   ░▒█▄▄█░▀░░▀░▀▀▀░▄▄▄▀░░░▒█▄▄█░░▀▀░░░░▀░░░▀▀▀░▀▀▀░░░░░▀▄▀░░▀▀▀░▀░░▒▀
+--
+--                   Neovim Config for Lacy LeFae
+
+------------------------------------------------------------------
+-- Initialization Processes [init]
+------------------------------------------------------------------
+
+-- best practice for nvim-tree.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
--- set termguicolors
 vim.opt.termguicolors = true
 
--- clear vimrc autogroup
-local api = vim.api
-local vimrc_grp = api.nvim_create_augroup("vimrc", { clear = true })
-api.nvim_clear_autocmds({ group = vimrc_grp })
+------------------------------------------------------------------
+-- Key Bindings [keymap]
+------------------------------------------------------------------
 
--- set leader
 vim.g.mapleader = " "
+vim.keymap.set('n', '<leader>ve', ':$tabedit $MYVIMRC<cr>')
+vim.keymap.set('n', '<leader>vr', ':source $MYVIMRC<cr>')
+vim.keymap.set('n', ';', ':')
+vim.keymap.set('v', ';', ':')
+vim.keymap.set('n', 'gf', ':edit <cfile><cr>')
+vim.keymap.set('v', '<C-h>', '<gv')
+vim.keymap.set('v', '<C-l>', '>gv')
+vim.keymap.set('n', 'L', '$')
+vim.keymap.set('n', 'H', '^')
+vim.keymap.set('n', 'U', '<C-r>')
+vim.keymap.set('v', 'L', '$')
+vim.keymap.set('v', 'H', '^')
+vim.keymap.set('n', '<C-h>', '<<')
+vim.keymap.set('n', '<C-l>', '>>')
 
--- install and load plugins using lazy
-require("pluggos")
-require("plug.barb")
-require("plug.buffline")
-require("plug.colorz")
-require("plug.comp")
-require("plug.gcc")
-require("plug.jb")
-require("plug.line")
-require("plug.surround")
-require("plug.tele")
-require("plug.term")
-require("plug.tree")
+------------------------------------------------------------------
+-- General Settings [options]
+------------------------------------------------------------------
 
--- load config files
-require("appearance")
-require("commands")
-require("keymap")
-require("options")
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 
+vim.opt.hidden = true
+vim.opt.autochdir = true
 
+vim.opt.relativenumber = true
+vim.opt.number = true
 
+vim.opt.list = true
+vim.opt.listchars = { tab = "|_", trail = "~" }
+vim.opt.wrap = true
+
+vim.opt.smartcase = true
+vim.opt.ignorecase = true
+vim.opt.joinspaces = false
+
+vim.opt.title = true
+vim.opt.scrolloff = 16
+vim.opt.sidescrolloff = 8
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
+------------------------------------------------------------------
+-- Plugins & Settings [plugins]
+------------------------------------------------------------------
+
+require("plugins")
+
+------------------------------------------------------------------
+-- Commands [commands]
+------------------------------------------------------------------
+
+-- helptab
+vim.api.nvim_create_user_command("HelpTabCheck",
+    function()
+        if vim.api.nvim_buf_get_option(0, 'buftype') == 'help' then
+            vim.cmd.wincmd("T")
+            vim.keymap.set("n", "q", ":q<cr>", { buffer = true })
+        end
+    end,
+{})
+
+vim.api.nvim_create_augroup("help", { clear = true })
+vim.api.nvim_create_autocmd({ "BufEnter" },
+{
+    group = "help",
+    pattern = "*.txt",
+    command = "HelpTabCheck"
+}
+)

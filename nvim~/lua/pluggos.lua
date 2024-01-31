@@ -33,30 +33,23 @@ require("lazy").setup({
 	-- colorscheme(s)
 	"morhetz/gruvbox",
 
-	-- nvim-cmp: completions engine
+	-- lsp made easy (with lsp-zero.nvim)
+	"williamboman/mason.nvim",
+	"williamboman/mason-lspconfig.nvim",
+
+	{ "VonHeikemen/lsp-zero.nvim", branch = "v3.x" },
 	"neovim/nvim-lspconfig",
+	"hrsh7th/cmp-nvim-lsp",
 	"hrsh7th/nvim-cmp",
-	"hrsh7th/cmp-nvim-lua",
+	"L3MON4D3/LuaSnip",
+	"rafamadriz/friendly-snippets",
+
+	-- completion sources and snippets
+	"hrsh7th/cmp-cmdline",
 	"hrsh7th/cmp-buffer",
 	"hrsh7th/cmp-path",
-	"hrsh7th/cmp-cmdline",
 	"saadparwaiz1/cmp_luasnip",
-
-  -- lsp made easy!
-  "hrsh7th/cmp-nvim-lsp",
-  "williamboman/nvim-lsp-installer",
-  "neovim/nvim-lspconfig",
-
-	-- snippets: quicker coding maybe!
-	{
-		"L3MON4D3/LuaSnip",
-		dependencies = { "rafamadriz/friendly-snippets" },
-			
-		-- follow latest release.
-		version = "2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-		-- install jsregexp (optional!).
-		build = "make install_jsregexp"
-	},
+	"hrsh7th/cmp-nvim-lua",
 
 	-- gitgutter: git tracking
 	"airblade/vim-gitgutter",
@@ -64,12 +57,9 @@ require("lazy").setup({
 	-- lualine: status bar
 	{
 		"nvim-lualine/lualine.nvim",
-		requires = { "nvim-tree/nvim-web-devicons", opt = true }
+		dependencies = { "nvim-tree/nvim-web-devicons", opt = true }
 	},
-
-	-- nvim-visual-multi: multi-cursor with <c-n> in visual mode
-	"mg979/vim-visual-multi",
-
+	
 	-- telescope: fuzzy finder for whatever!
 	{
 		"nvim-telescope/telescope.nvim", tag = "0.1.3",
@@ -78,8 +68,8 @@ require("lazy").setup({
 	{"nvim-telescope/telescope-fzf-native.nvim", build = "make"},
 	{"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
 	{"nvim-treesitter/nvim-treesitter-textobjects",
-		after = "nvim-treesitter",
-		requires = "nvim-treesitter/nvim-treesitter", },
+		dependencies = "nvim-treesitter/nvim-treesitter",
+	},
 
 	-- bufferline: a fancy tab bar type thing
 	{"akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons"},
@@ -102,10 +92,7 @@ require("lazy").setup({
 		},
 	},
 
-	-- indent-blankline: visual indentation indication
-	"lukas-reineke/indent-blankline.nvim",
-
-	-- nvim-colorizer.lua: see them colors from the hex!
+	-- nvim-colorizer" see them colors from the hex!
 	"NvChad/nvim-colorizer.lua",
 
 	-- toggleterm.nvim: turn on a terminal real quick
@@ -113,5 +100,33 @@ require("lazy").setup({
 
 	-- Comment.nvim: for comments
 	{ "numToStr/Comment.nvim", lazy = false },
+
+  -- registers.nvim: check out the registers
+  {
+    "tversteeg/registers.nvim",
+    name = "registers",
+    keys = {
+      { "\"",	 mode = { "n", "v" } },
+      { "<C-R>", mode = "i" }
+    },
+    cmd = "Registers",
+  },
+
+	-- neoscroll: prettier scrolling
+	"karb94/neoscroll.nvim",
+
+	-- mini.pairs: minimal pairing system
+	{ "echasnovski/mini.pairs", version = false },
+
+	-- flit.nvim: flit around with f/F;t/T
+	{	"ggandor/flit.nvim", dependencies = {
+		"ggandor/leap.nvim",
+		"tpope/vim-repeat",
+		},
+	},
+	"ggandor/leap.nvim",
+	"tpope/vim-repeat",
+
+
 })
 
