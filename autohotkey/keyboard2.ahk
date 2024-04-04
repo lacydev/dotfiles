@@ -31,7 +31,7 @@
 ; ================================
 
 #Enter::RunOrActivate("Cmder ahk_exe ConEmu64.exe","C:\tools\Cmder\Cmder.exe","")
-	#F::RunOrActivate("ahk_exe vivaldi.exe","C:\Users\soyla\Desktop\LACYYY - Vivaldi.lnk","")
+	#F::RunOrActivate("ahk_exe vivaldi.exe","C:\Program Files\Vivaldi\Application\vivaldi.exe","")
 	#B::RunOrActivate("ahk_exe thunderbird.exe","C:\Program Files\Mozilla Thunderbird\thunderbird.exe","")
 	#M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe","")
 	#N::RunOrActivate("ahk_exe Joplin.exe","C:\Program Files\Joplin\Joplin.exe","")
@@ -40,7 +40,7 @@
 	#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe","")
 
 ; Setup for Explorer.exe
-	#E::RunOrActivate("ahk_class CabinetWClass","explorer.exe c:\Users\soyla\","")
+	#E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\","")
 
 RunOrActivate(exec_test,exec_path,win_dflt)
 {
@@ -62,57 +62,23 @@ RunOrActivate(exec_test,exec_path,win_dflt)
 ; Setup for Playnite
 #HotIf WinActive("ahk_exe Playnite.DesktopApp.exe")
 	Joy13::F11
-
-#HotIf WinActive("ahk_class CabinetWClass")
-{
-	#+H::
-	{
-		Send "!d"
-		Send "{Blind}{Text}`%HOMEPATH`%"
-		Send "{Enter}"
-		return
-	}
-	#!H::
-	{
-		Send "!d"
-		Send "{Blind}{Text}C:\Users\Public"
-		Send "{Enter}"
-		return
-	}
-	#+J::
-	{
-		Send "!d"
-		Send "{Blind}{Text}`%HOMEPATH`%\Downloads\"
-		Send "{Enter}"
-		return
-	}
-	#+L::
-	{
-		Send "!d"
-		Send "{Blind}{Text}`%APPDATA`%"
-		Send "{Enter}"
-		return
-	}
-	#E::
-	{
-		Send "!d"
-		Send "{Blind}{Text}explorer ."
-		Send "{Enter}"
-		return
-	}
-}
+#HotIf
 
 ; ================================
-; NUMPAD FOR KRITA SETUP
+; NUMPAD
 ; ================================
 
-#HotIf WinActive("ahk_exe krita.exe")
-{
-}
+NumpadHome::F13
+NumpadUp::F14
+NumpadPgUp::F15
+NumpadLeft::F16
+NumpadClear::F17
+NumpadRight::F18
+NumpadEnd::F19
+NumpadDown::F20
+NumpadPgDn::F21
+NumpadIns::F22
+NumpadDel::F23
+NumpadMult::F24
+NumpadDiv::^F13
 
-; ================================
-; HELPFUL
-; ================================
-
-#HotIf WinActive("ahk_class Minecraft")
-	!S::Send "§"

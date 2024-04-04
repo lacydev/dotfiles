@@ -1,9 +1,9 @@
 --
---   ░▒█░░░░█▀▀▄░█▀▄░█░░█░░░▒█░░░░▄▀▀▄░▄░░░▄░█▀▀░█▀▀░░░▒█░░▒█░░▀░░█▀▄▀█
---   ░▒█░░░░█▄▄█░█░░░█▄▄█░░░▒█░░░░█░░█░░█▄█░░█▀▀░▀▀▄░░░░▒█▒█░░░█▀░█░▀░█
---   ░▒█▄▄█░▀░░▀░▀▀▀░▄▄▄▀░░░▒█▄▄█░░▀▀░░░░▀░░░▀▀▀░▀▀▀░░░░░▀▄▀░░▀▀▀░▀░░▒▀
+--	 ░▒█░░░░█▀▀▄░█▀▄░█░░█░░░▒█░░░░▄▀▀▄░▄░░░▄░█▀▀░█▀▀░░░▒█░░▒█░░▀░░█▀▄▀█
+--	 ░▒█░░░░█▄▄█░█░░░█▄▄█░░░▒█░░░░█░░█░░█▄█░░█▀▀░▀▀▄░░░░▒█▒█░░░█▀░█░▀░█
+--	 ░▒█▄▄█░▀░░▀░▀▀▀░▄▄▄▀░░░▒█▄▄█░░▀▀░░░░▀░░░▀▀▀░▀▀▀░░░░░▀▄▀░░▀▀▀░▀░░▒▀
 --
---                   Neovim Config for Lacy LeFae
+--					 Neovim Config for Lacy
 
 ------------------------------------------------------------------
 -- Initialization Processes [init]
@@ -39,7 +39,7 @@ vim.keymap.set('n', '<C-l>', '>>')
 -- General Settings [options]
 ------------------------------------------------------------------
 
-vim.opt.expandtab = true
+vim.opt.expandtab = false
 vim.opt.shiftwidth = 4
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -51,9 +51,8 @@ vim.opt.relativenumber = true
 vim.opt.number = true
 
 vim.opt.list = true
-vim.opt.listchars = { tab = "|_", trail = "~" }
+vim.opt.listchars = { tab = "\\.", trail = "~" }
 vim.opt.wrap = true
-
 vim.opt.smartcase = true
 vim.opt.ignorecase = true
 vim.opt.joinspaces = false
@@ -76,19 +75,19 @@ require("plugins")
 
 -- helptab
 vim.api.nvim_create_user_command("HelpTabCheck",
-    function()
-        if vim.api.nvim_buf_get_option(0, 'buftype') == 'help' then
-            vim.cmd.wincmd("T")
-            vim.keymap.set("n", "q", ":q<cr>", { buffer = true })
-        end
-    end,
+	function()
+		if vim.api.nvim_buf_get_option(0, 'buftype') == 'help' then
+			vim.cmd.wincmd("T")
+			vim.keymap.set("n", "q", ":q<cr>", { buffer = true })
+		end
+	end,
 {})
 
 vim.api.nvim_create_augroup("help", { clear = true })
 vim.api.nvim_create_autocmd({ "BufEnter" },
 {
-    group = "help",
-    pattern = "*.txt",
-    command = "HelpTabCheck"
+	group = "help",
+	pattern = "*.txt",
+	command = "HelpTabCheck"
 }
 )
