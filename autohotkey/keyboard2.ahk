@@ -24,7 +24,7 @@
 
 ; #f::return
 #Backspace::!F4
-#h::WinMinimize "A"
+; #h::WinMinimize "A"
 
 ; ================================
 ; HYPER APPS
