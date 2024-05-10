@@ -59,10 +59,26 @@ RunOrActivate(exec_test,exec_path,win_dflt)
 	}
 	return
 }
-; Setup for Playnite
+; Setup for Gayming
 #HotIf WinActive("ahk_exe Playnite.DesktopApp.exe")
 	Joy13::F11
 #HotIf
+
+F7 & LButton::{
+	static toggle := 0
+	HoldButtonToggle("LButton",toggle)
+}
+
+HoldButtonToggle(btn,toggle)
+{
+	if (toggle = 1) {
+		Send "{" btn " up}"
+		toggle := 0
+	} else {
+		toggle := 1
+		Send "{" btn " down}"
+	}
+}
 
 ; ================================
 ; NUMPAD
