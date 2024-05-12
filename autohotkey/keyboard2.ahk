@@ -39,8 +39,6 @@
  ^!Esc::RunOrActivate("ahk_exe taskmgr.exe","taskmgr.exe","")
 	#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe","")
 
-; Setup for Explorer.exe
-	#E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\","")
 
 RunOrActivate(exec_test,exec_path,win_dflt)
 {
@@ -59,7 +57,11 @@ RunOrActivate(exec_test,exec_path,win_dflt)
 	}
 	return
 }
-; Setup for Gayming
+
+; ================================
+; GAYMING
+; ================================
+
 #HotIf WinActive("ahk_exe Playnite.DesktopApp.exe")
 	Joy13::F11
 #HotIf
@@ -79,6 +81,33 @@ HoldButtonToggle(btn,toggle)
 		Send "{" btn " down}"
 	}
 }
+
+; ================================
+; EXPLORER.EXE
+; ================================
+
+;#E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\","")
+#E::
+{
+	Run "explorer.exe C:\Users\soyla\"
+	WinWait "ahk_class CabinetWClass"
+	WinActivate
+}
+
+#HotIf WinActive("ahk_class CabinetWClass")
+	^H::ChangeDirectory("%HOMEPATH%")
+	^J::ChangeDirectory("%HOMEPATH%\Downloads")
+	^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
+	^P::ChangeDirectory("%HOMEPATH%\Projects")
+#HotIf
+
+ChangeDirectory(location)
+{
+	Send "^l"
+	Send location
+	Send "{Enter}"
+}
+
 
 ; ================================
 ; NUMPAD
