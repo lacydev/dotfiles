@@ -17,11 +17,11 @@ require('lazy').setup({
 	"folke/lazy.nvim",
 	"morhetz/gruvbox",
 	"nvim-tree/nvim-tree.lua",
-	{
-		'nvimdev/dashboard-nvim',
-		event = 'VimEnter',
-		dependencies = { {'nvim-tree/nvim-web-devicons'}}
-	},
+	-- {
+	-- 	'nvimdev/dashboard-nvim',
+	-- 	event = 'VimEnter',
+	-- 	dependencies = { {'nvim-tree/nvim-web-devicons'}}
+	-- },
 
 	{
 		'numToStr/Comment.nvim',
@@ -85,7 +85,7 @@ require('lazy').setup({
 vim.cmd.colorscheme("gruvbox")
 
 require("plugins.comment")
-require("plugins.dashboard-nvim")
+-- require("plugins.dashboard-nvim")
 require("plugins.lualine")
 require("plugins.nvim-cmp")
 require("plugins.nvim-surround")

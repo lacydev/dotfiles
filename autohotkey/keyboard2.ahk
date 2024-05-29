@@ -95,14 +95,20 @@ HoldButtonToggle(btn,toggle)
 }
 
 #HotIf WinActive("ahk_class CabinetWClass")
+	; TODO: ^? to see a list of hotkeys for explorer
 	^H::ChangeDirectory("%HOMEPATH%")
 	^J::ChangeDirectory("%HOMEPATH%\Downloads")
+	^K::ChangeDirectory("%APPDATA%")
+	^I::ChangeDirectory("%LOCALAPPDATA%")
 	^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
 	^P::ChangeDirectory("%HOMEPATH%\Projects")
+	^M::ChangeDirectory("P:\Media")
+	^G::ChangeDirectory("C:\Games")
 #HotIf
 
 ChangeDirectory(location)
 {
+	; TODO: check if you actually do need to change directory
 	Send "^l"
 	Send location
 	Send "{Enter}"
