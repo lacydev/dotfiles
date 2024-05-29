@@ -109,11 +109,15 @@ yay -Syu
 
 yay_programs=()
 flatpak_programs=()
+cargo_programs=()
+gem_programs=()
 
 while IFS="," read -r pk name; do
 	case $pk in
 		F) flatpak_programs+=("$name"); ;;
 		Y) yay_programs+=("$name"); ;;
+		C) cargo_programs+=("$name"); ;;
+		G) gem_programs+=("$name"); ;;
 	esac;
 done < <(tail -n +2 "$HOME/.dotfiles/apps.csv")
 
@@ -125,6 +129,22 @@ for fp in "${flatpak_programs[@]}"; do
 	flatpak info $fp
 	flatpak install -y --noninteractive $fp
 done
+
+for cp in "${cargo_programs[@]}"; do
+	cargo install $cp
+done
+
+for gp in "${gem_programs[@]}"; do
+	gem install $cp
+done
+
+
+# Set default Java version
+
+java_version="java-17-openjdk"
+
+sudo archlinux-java set $java_version
+
 
 # Set up AwesomeWM
 
