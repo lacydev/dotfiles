@@ -17,6 +17,7 @@
 ^#r::Reload
 ^#p::Pause -1
 ^#e::Edit
+^#i::Run "C:\ProgramData\chocolatey\lib\autohotkey.portable\tools\Install.cmd"
 
 ; ================================
 ; REASSIGN SILLY WINDOWS KEYS
