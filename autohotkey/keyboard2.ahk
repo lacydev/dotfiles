@@ -1,13 +1,14 @@
-﻿#Requires AutoHotkey v2.0
-
-; ================================
+﻿; ================================
 ; INIT
 ; *===============================
+
+#Requires AutoHotkey v2.0
 
 ;#NoEnv	; Recommended for performance and compatibility with future AutoHotkey releases.
 ;#Warn  ; Enable warnings to assist with detecting common errors.
 ;SendMode Input	; Recommended for new scripts due to its superior speed and reliability.
 ;SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+
 
 ; ================================
 ; AHK KEYS
@@ -68,7 +69,7 @@ RunOrActivate(exec_test,exec_path,win_dflt)
 #HotIf
 
 F7 & LButton::{
-	static toggle := 0
+		static toggle := 0
 	HoldButtonToggle("LButton",toggle)
 }
 
@@ -88,6 +89,11 @@ HoldButtonToggle(btn,toggle)
 ; ================================
 
 ;#E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\","")
+global explorer_tests := [ "ahk_class CabinetWClass",
+	"Save",
+	"Saving",
+	"Open", ]
+
 #E::
 {
 	Run "explorer.exe C:\Users\soyla\"
@@ -95,7 +101,7 @@ HoldButtonToggle(btn,toggle)
 	WinActivate
 }
 
-#HotIf WinActive("ahk_class CabinetWClass")
+#HotIf MultiWindowCheck(explorer_tests)
 	; TODO: ^? to see a list of hotkeys for explorer
 	^H::ChangeDirectory("%HOMEPATH%")
 	^J::ChangeDirectory("%HOMEPATH%\Downloads")
@@ -109,12 +115,25 @@ HoldButtonToggle(btn,toggle)
 
 ChangeDirectory(location)
 {
-	; TODO: check if you actually do need to change directory
 	Send "^l"
 	Send location
 	Send "{Enter}"
 }
 
+MultiWindowCheck(tests)
+{
+	global
+	local is_active := false
+
+	for k,v in tests {
+		if WinActive(v) {
+			is_active := true
+			break
+		}
+	}
+
+	return is_active
+}
 
 ; ================================
 ; NUMPAD
