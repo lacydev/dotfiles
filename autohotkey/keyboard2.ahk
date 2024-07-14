@@ -24,8 +24,8 @@
 ; REASSIGN SILLY WINDOWS KEYS
 ; ================================
 
-; #f::return
 #Backspace::!F4
+; #f::return
 ; #h::WinMinimize "A"
 
 ; ================================
@@ -36,7 +36,7 @@
 	#F::RunOrActivate("ahk_exe vivaldi.exe","C:\Program Files\Vivaldi\Application\vivaldi.exe","")
 	#B::RunOrActivate("ahk_exe thunderbird.exe","C:\Program Files\Mozilla Thunderbird\thunderbird.exe","")
 	#M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe","")
-	#N::RunOrActivate("ahk_exe Joplin.exe","C:\Program Files\Joplin\Joplin.exe","")
+	; #N::RunOrActivate("ahk_exe Joplin.exe","C:\Program Files\Joplin\Joplin.exe","")
 	#P::RunOrActivate("ahk_exe KeePassXC.exe","C:\Program Files\KeePassXC\KeePassXC.exe","")
  ^!Esc::RunOrActivate("ahk_exe taskmgr.exe","taskmgr.exe","")
 	#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe","")
@@ -68,41 +68,20 @@ RunOrActivate(exec_test,exec_path,win_dflt)
 	Joy13::F11
 #HotIf
 
-F7 & LButton::{
-		static toggle := 0
-	HoldButtonToggle("LButton",toggle)
-}
-
-HoldButtonToggle(btn,toggle)
-{
-	if (toggle = 1) {
-		Send "{" btn " up}"
-		toggle := 0
-	} else {
-		toggle := 1
-		Send "{" btn " down}"
-	}
-}
-
 ; ================================
 ; EXPLORER.EXE
 ; ================================
 
-;#E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\","")
 global explorer_tests := [ "ahk_class CabinetWClass",
 	"Save",
 	"Saving",
 	"Open", ]
 
-#E::
-{
-	Run "explorer.exe C:\Users\soyla\"
-	WinWait "ahk_class CabinetWClass"
-	WinActivate
-}
+#E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\","")
 
 #HotIf MultiWindowCheck(explorer_tests)
 	; TODO: ^? to see a list of hotkeys for explorer
+	^+H::ChangeDirectory("%PUBLIC%")
 	^H::ChangeDirectory("%HOMEPATH%")
 	^J::ChangeDirectory("%HOMEPATH%\Downloads")
 	^K::ChangeDirectory("%APPDATA%")

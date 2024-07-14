@@ -22,6 +22,7 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 vim.keymap.set('n', '<leader>ve', ':$tabedit $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>vr', ':source $MYVIMRC<cr>')
+vim.keymap.set('n', '<leader>vl', ':Lazy<cr>')
 vim.keymap.set('n', ';', ':')
 vim.keymap.set('v', ';', ':')
 vim.keymap.set('n', 'gf', ':edit <cfile><cr>')
@@ -34,6 +35,7 @@ vim.keymap.set('v', 'L', '$')
 vim.keymap.set('v', 'H', '^')
 vim.keymap.set('n', '<C-h>', '<<')
 vim.keymap.set('n', '<C-l>', '>>')
+vim.keymap.set('n', '<F4>', '<cmd>noh<cr>', { silent = true })
 
 ------------------------------------------------------------------
 -- General Settings [options]
@@ -46,6 +48,7 @@ vim.opt.softtabstop = 4
 
 vim.opt.hidden = true
 vim.opt.autochdir = true
+vim.opt.mouse = "a"
 
 vim.opt.relativenumber = true
 vim.opt.number = true

@@ -37,6 +37,8 @@ require('lazy').setup({
 		event = "VeryLazy",
 	},
 
+	"bullets-vim/bullets.vim",
+
 	{
 		'nvim-lualine/lualine.nvim',
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
@@ -85,7 +87,6 @@ require('lazy').setup({
 vim.cmd.colorscheme("gruvbox")
 
 require("plugins.comment")
--- require("plugins.dashboard-nvim")
 require("plugins.lualine")
 require("plugins.nvim-cmp")
 require("plugins.nvim-surround")

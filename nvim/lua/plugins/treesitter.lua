@@ -1,4 +1,4 @@
-require("nvim-treesitter.configs").setup({
+require("nvim-treesitter.configs").setup {
 	ensure_installed = {
 		"bash",
 		"fish",
@@ -9,12 +9,12 @@ require("nvim-treesitter.configs").setup({
 		"html",
 		"css",
 		"scss",
-		"python"
+		"python",
 	},
 	sync_install = false,
 	auto_install = false,
 	highlight = { enable = true },
 	indent = { enable = true },
-})
+}
 
 require("nvim-treesitter.install").prefer_git = false
