@@ -90,6 +90,7 @@ global explorer_tests := [ "ahk_class CabinetWClass",
 	^P::ChangeDirectory("%HOMEPATH%\Projects")
 	^M::ChangeDirectory("P:\Media")
 	^G::ChangeDirectory("C:\Games")
+	#E::ChangeDirectory("explorer.exe .")
 #HotIf
 
 ChangeDirectory(location)
@@ -97,6 +98,7 @@ ChangeDirectory(location)
 	Send "^l"
 	Send location
 	Send "{Enter}"
+	return
 }
 
 MultiWindowCheck(tests)
@@ -113,6 +115,7 @@ MultiWindowCheck(tests)
 
 	return is_active
 }
+
 
 ; ================================
 ; NUMPAD

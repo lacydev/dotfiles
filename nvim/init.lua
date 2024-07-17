@@ -3,7 +3,7 @@
 --	 ░▒█░░░░█▄▄█░█░░░█▄▄█░░░▒█░░░░█░░█░░█▄█░░█▀▀░▀▀▄░░░░▒█▒█░░░█▀░█░▀░█
 --	 ░▒█▄▄█░▀░░▀░▀▀▀░▄▄▄▀░░░▒█▄▄█░░▀▀░░░░▀░░░▀▀▀░▀▀▀░░░░░▀▄▀░░▀▀▀░▀░░▒▀
 --
---					 Neovim Config for Lacy
+--					Neovim Config for Lacy
 
 ------------------------------------------------------------------
 -- Initialization Processes [init]
@@ -22,7 +22,7 @@ vim.opt.termguicolors = true
 vim.g.mapleader = " "
 vim.keymap.set('n', '<leader>ve', ':$tabedit $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>vr', ':source $MYVIMRC<cr>')
-vim.keymap.set('n', '<leader>vl', ':Lazy<cr>')
+vim.keymap.set('n', '<leader>ll', ':Lazy<cr>')
 vim.keymap.set('n', ';', ':')
 vim.keymap.set('v', ';', ':')
 vim.keymap.set('n', 'gf', ':edit <cfile><cr>')

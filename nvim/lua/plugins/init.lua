@@ -17,13 +17,20 @@ require('lazy').setup({
 	"folke/lazy.nvim",
 	"morhetz/gruvbox",
 	"nvim-tree/nvim-tree.lua",
-	-- {
-	-- 	'nvimdev/dashboard-nvim',
-	-- 	event = 'VimEnter',
-	-- 	dependencies = { {'nvim-tree/nvim-web-devicons'}}
-	-- },
+	{ "vimwiki/vimwiki",
+		init = function()
+			vim.g.vimwiki_list = {
+			{
+				path = "~/Documents/Vimwiki/Journal/",
+				syntax = "default",
+				ext = ".wiki",
+			},
+		}
+			vim.g.vimwiki_global_ext = 0
+		end,
+	},
 
-	{
+ {
 		'numToStr/Comment.nvim',
 		opts = {
 			-- add any options here
@@ -80,7 +87,7 @@ require('lazy').setup({
 	"neovim/nvim-lspconfig",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	"RRethy/vim-illuminate",
+	-- "RRethy/vim-illuminate",
 
 })
 
