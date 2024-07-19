@@ -102,5 +102,6 @@ require("plugins.nvim-tree")
 require("plugins.registers")
 require("plugins.telescope")
 require("plugins.treesitter")
+require("plugins.whitespace")
 
 require("plugins.lsp")
