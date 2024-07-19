@@ -45,6 +45,7 @@ require('lazy').setup({
 	},
 
 	"bullets-vim/bullets.vim",
+	"johnfrankmorgan/whitespace.nvim",
 
 	{
 		'nvim-lualine/lualine.nvim',
