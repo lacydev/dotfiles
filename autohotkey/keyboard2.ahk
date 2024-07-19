@@ -26,7 +26,7 @@
 
 #Backspace::!F4
 ; #f::return
-; #h::WinMinimize "A"
+#h::WinMinimize "A"
 
 ; ================================
 ; HYPER APPS
@@ -38,7 +38,7 @@
 	#M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe","")
 	; #N::RunOrActivate("ahk_exe Joplin.exe","C:\Program Files\Joplin\Joplin.exe","")
 	#P::RunOrActivate("ahk_exe KeePassXC.exe","C:\Program Files\KeePassXC\KeePassXC.exe","")
- ^!Esc::RunOrActivate("ahk_exe taskmgr.exe","taskmgr.exe","")
+ ^!Esc::RunOrActivate("ahk_exe LibreHardwareMonitor.exe","C:\ProgramData\chocolatey\lib\librehardwaremonitor\tools\LibreHardwareMonitor.exe","")
 	#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe","")
 
 
