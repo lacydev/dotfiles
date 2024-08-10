@@ -15,8 +15,15 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
 	"folke/lazy.nvim",
+
 	"morhetz/gruvbox",
+	{ "catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000
+	},
+
 	"nvim-tree/nvim-tree.lua",
+
 	{ "vimwiki/vimwiki",
 		init = function()
 			vim.g.vimwiki_list = {
@@ -30,31 +37,28 @@ require('lazy').setup({
 		end,
 	},
 
- {
-		'numToStr/Comment.nvim',
+	{ "numToStr/Comment.nvim",
 		opts = {
 			-- add any options here
 		},
 		lazy = false,
 	},
 
-	{
-		"kylechui/nvim-surround",
+	{ "kylechui/nvim-surround",
 		version = "*", -- Use for stability; omit to use `main` branch for the latest features
 		event = "VeryLazy",
 	},
 
+	"monaqa/dial.nvim",
+
 	"bullets-vim/bullets.vim",
 	"johnfrankmorgan/whitespace.nvim",
 
-	{
-		'nvim-lualine/lualine.nvim',
+	{ "nvim-lualine/lualine.nvim",
 		dependencies = { 'nvim-tree/nvim-web-devicons' }
 	},
 
-
-	{
-		"tversteeg/registers.nvim",
+	{ "tversteeg/registers.nvim",
 		name = "registers",
 		keys = {
 			{ "\"", mode = { "n", "v" } },
@@ -63,15 +67,12 @@ require('lazy').setup({
 		cmd = "Registers",
 	},
 
-	{
-		'nvim-telescope/telescope.nvim',
+	{ "nvim-telescope/telescope.nvim",
 		branch = '0.1.x',
 		dependencies = { 'nvim-lua/plenary.nvim' }
 	},
 
-
-	{
-		"nvim-treesitter/nvim-treesitter",
+	{ "nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
 
@@ -88,11 +89,10 @@ require('lazy').setup({
 	"neovim/nvim-lspconfig",
 	"williamboman/mason.nvim",
 	"williamboman/mason-lspconfig.nvim",
-	-- "RRethy/vim-illuminate",
 
 })
 
-vim.cmd.colorscheme("gruvbox")
+vim.cmd.colorscheme("catppuccin-macchiato")
 
 require("plugins.comment")
 require("plugins.lualine")
@@ -103,5 +103,6 @@ require("plugins.registers")
 require("plugins.telescope")
 require("plugins.treesitter")
 require("plugins.whitespace")
+require("plugins.dial")
 
 require("plugins.lsp")
