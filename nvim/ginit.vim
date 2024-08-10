@@ -9,17 +9,17 @@ if exists('g:fvim_loaded')
 	FVimCursorSmoothBlink v:true
 
 	" Background composition
-	FVimBackgroundComposition 'acrylic'   " 'none', 'transparent', 'blur' or 'acrylic'
-	FVimBackgroundOpacity 0.85            " value between 0 and 1, default bg opacity.
-	FVimBackgroundAltOpacity 0.85         " value between 0 and 1, non-default bg opacity.
-	" FVimBackgroundImage 'C:/foobar.png'   " background image
-	" FVimBackgroundImageVAlign 'center'    " vertial position, 'top', 'center' or 'bottom'
-	" FVimBackgroundImageHAlign 'center'    " horizontal position, 'left', 'center' or 'right'
-	" FVimBackgroundImageStretch 'fill'     " 'none', 'fill', 'uniform', 'uniformfill'
-	" FVimBackgroundImageOpacity 0.85       " value between 0 and 1, bg image opacity
+	FVimBackgroundComposition 'acrylic'
+	FVimBackgroundOpacity 0.97
+	FVimBackgroundAltOpacity 0.97
+	" FVimBackgroundImage 'C:/foobar.png'
+	" FVimBackgroundImageVAlign 'center'
+	" FVimBackgroundImageHAlign 'center'
+	" FVimBackgroundImageStretch 'fill'
+	" FVimBackgroundImageOpacity 0.85
 
 	" Title bar tweaks
-	FVimCustomTitleBar v:true             " themed with colorscheme
+	FVimCustomTitleBar v:true
 
 	" Debug UI overlay
 	" FVimDrawFPS v:true
@@ -29,9 +29,9 @@ if exists('g:fvim_loaded')
 	FVimFontAutohint v:true
 	FVimFontHintLevel 'full'
 	FVimFontLigature v:true
-	FVimFontLineHeight '+1.0' " can be 'default', '14.0', '-1.0' etc.
+	FVimFontLineHeight '+1.0'
 	FVimFontSubpixel v:true
-	FVimFontNoBuiltinSymbols v:false " Disable built-in Nerd font symbols
+	FVimFontNoBuiltinSymbols v:false
 
 	" Try to snap the fonts to the pixels, reduces blur
 	" in some situations (e.g. 100% DPI).
@@ -42,19 +42,19 @@ if exists('g:fvim_loaded')
 	FVimFontBoldWeight 800
 
 	" Font debugging -- draw bounds around each glyph
-	FVimFontDrawBounds v:true
+	" FVimFontDrawBounds v:true
 
 	" UI options (all default to v:false)
-	" FVimUIPopupMenu v:true      " external popup menu
-	" FVimUIWildMenu v:false      " external wildmenu -- work in progress
+	" FVimUIPopupMenu v:true
+	" FVimUIWildMenu v:false
 
 	" Keyboard mapping options
-	FVimKeyDisableShiftSpace v:true " disable unsupported sequence <S-Space>
-	FVimKeyAutoIme v:true           " Automatic input method engagement in Insert mode
-	FVimKeyAltGr v:true             " Recognize AltGr. Side effect is that <C-A-Key> is then impossible
+	FVimKeyDisableShiftSpace v:true
+	FVimKeyAutoIme v:true
+	FVimKeyAltGr v:true
 
 	" Default options (workspace-agnostic)
-	FVimDefaultWindowWidth 1600     " Default window size in a new workspace
+	FVimDefaultWindowWidth 1600
 	FVimDefaultWindowHeight 900
 
 	" Detach from a remote session without killing the server
