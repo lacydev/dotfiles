@@ -1,12 +1,15 @@
 local api = require("nvim-tree.api")
 
 -- sets `-` to open/focus nvim-tree and find the current open file
-vim.keymap.set("n", "-",
-function()
-	api.tree.find_file{ open = true, update_root = false }
+
+local function findAndFocus()
+	api.tree.find_file{ open = true, update_root = true }
 	api.tree.focus()
 end
-)
+
+-- vim.keymap.set("n", "-", findAndFocus )
+vim.keymap.set("n", "<F1>", findAndFocus )
+
 
 local function defautl(bufnr)
 
@@ -34,7 +37,7 @@ local function defautl(bufnr)
 	vim.keymap.set("n", ">",	 api.node.navigate.sibling.next,		opts("Next Sibling"))
 	vim.keymap.set("n", "<",	 api.node.navigate.sibling.prev,		opts("Previous Sibling"))
 	vim.keymap.set("n", "grc",	 api.node.run.cmd,						opts("Run Command"))
-	vim.keymap.set("n", "<C-p>", api.tree.change_root_to_parent,		opts("Up"))
+	vim.keymap.set("n", "-",	 api.tree.change_root_to_parent,		opts("Up"))
 	vim.keymap.set("n", "a",	 api.fs.create,							opts("Create"))
 	vim.keymap.set("n", "bd",	 api.marks.bulk.delete,					opts("Delete Bookmarked"))
 	vim.keymap.set("n", "bt",	 api.marks.bulk.trash,					opts("Trash Bookmarked"))
@@ -60,7 +63,8 @@ local function defautl(bufnr)
 	vim.keymap.set("n", "p",	 api.fs.paste,							opts("Paste"))
 	vim.keymap.set("n", "P",	 api.node.navigate.parent,				opts("Parent Directory"))
 	vim.keymap.set("n", "q",	 api.tree.close,						opts("Close"))
-	vim.keymap.set("n", "-",	 api.tree.close,						opts("Close"))
+	-- vim.keymap.set("n", "-",	 api.tree.close,						opts("Close"))
+	vim.keymap.set("n", "<F1>",	 api.tree.close,						opts("Close"))
 	vim.keymap.set("n", "r",	 api.fs.rename,							opts("Rename"))
 	vim.keymap.set("n", "R",	 api.tree.reload,						opts("Refresh"))
 	vim.keymap.set("n", "grs",	 api.node.run.system,					opts("Run System"))
