@@ -67,11 +67,6 @@ RunOrActivate(exec_test,exec_path)
 	Joy13::F11
 #HotIf
 
-#HotIf WinActive("ahk_exe StardewModdingAPI.exe") OR WinActive("ahk_exe Stardew Valley.exe")
-	LButton::RButton
-	RButton::LButton
-#HotIf
-
 ; ================================
 ; EXPLORER.EXE
 ; ================================
@@ -79,7 +74,10 @@ RunOrActivate(exec_test,exec_path)
 global explorer_tests := [ "ahk_class CabinetWClass",
 	"Save",
 	"Saving",
-	"Open", ]
+	"Open",
+	"Export",
+	"Import",
+	]
 
 #E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\")
 

@@ -25,16 +25,16 @@ require('lazy').setup({
 	"nvim-tree/nvim-tree.lua",
 
 	{ "vimwiki/vimwiki",
-		init = function()
-			vim.g.vimwiki_list = {
-			{
-				path = "~/Documents/Vimwiki/Journal/",
-				syntax = "default",
-				ext = ".wiki",
-			},
-		}
-			vim.g.vimwiki_global_ext = 0
-		end,
+		-- init = function()
+		-- 	vim.g.vimwiki_list = {
+		-- 	{
+		-- 		path = "~/Documents/Vimwiki/Journal/",
+		-- 		syntax = "default",
+		-- 		ext = ".wiki",
+		-- 	},
+		-- }
+		-- 	vim.g.vimwiki_global_ext = 0
+		-- end,
 	},
 
 	{ "numToStr/Comment.nvim",

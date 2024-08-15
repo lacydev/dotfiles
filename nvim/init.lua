@@ -25,7 +25,8 @@ vim.keymap.set('n', '<leader>vr', ':source $MYVIMRC<cr>')
 vim.keymap.set('n', '<leader>ll', ':Lazy<cr>')
 vim.keymap.set('n', ';', ':')
 vim.keymap.set('v', ';', ':')
-vim.keymap.set('n', 'gf', ':edit <cfile><cr>')
+vim.keymap.set('n', 'gf', '<cmd>edit <cfile><cr>')
+-- TODO make indentation keys available in Insert mode too
 vim.keymap.set('v', '<C-h>', '<gv')
 vim.keymap.set('v', '<C-l>', '>gv')
 vim.keymap.set('n', 'L', '$')
@@ -81,9 +82,11 @@ require("plugins")
 -- helptab
 vim.api.nvim_create_user_command("HelpTabCheck",
 	function()
-		if vim.api.nvim_buf_get_option(0, 'buftype') == 'help' then
+		-- if vim.api.nvim_buf_get_option(0, 'buftype') == 'help' then
+		if vim.api.nvim_get_option_value('buftype', {}) == 'help' then
 			vim.cmd.wincmd("T")
-			vim.keymap.set("n", "q", ":q<cr>", { buffer = true })
+			vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
+			vim.keymap.set("n", "-", "<cmd>q<cr>", { buffer = true })
 		end
 	end,
 {})
