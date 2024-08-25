@@ -58,6 +58,7 @@ RunOrActivate(exec_test,exec_path)
 	#P::RunOrActivate("ahk_exe KeePassXC.exe","C:\Program Files\KeePassXC\KeePassXC.exe")
  ^!Esc::RunOrActivate("ahk_exe LibreHardwareMonitor.exe","C:\ProgramData\chocolatey\lib\librehardwaremonitor\tools\LibreHardwareMonitor.exe")
 	#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe")
+   #F7::RunOrActivate("ahk_exe AutoClicker-3.0.exe", "C:\tools\Autoclicker OP\AutoClicker-3.0.exe")
 
 ; ================================
 ; GAYMING
@@ -89,11 +90,9 @@ global explorer_tests := [ "ahk_class CabinetWClass",
 	^K::ChangeDirectory("%APPDATA%")
 	^I::ChangeDirectory("%LOCALAPPDATA%")
 	^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
-	^P::ChangeDirectory("%HOMEPATH%\Projects")
-	^M::ChangeDirectory("P:\Media")
+	^P::ChangeDirectory("P:\")
+	^O::ChangeDirectory("O:\")
 	^G::ChangeDirectory("C:\Games")
-	^S::ChangeDirectory("%HOMEPATH%\Sync\")
-	^O::ChangeDirectory("%HOMEPATH%\OneDrive\")
 
 	#E::ChangeDirectory("explorer.exe .") ; window dupe hack!
 #HotIf
