@@ -18,7 +18,6 @@
 # [ScriptBlock]$CmderPrompt = {}
 
 [ScriptBlock]$PostPrompt = {
-
 }
 
 ## <Continue to add your own>
@@ -40,5 +39,14 @@
 #     del -force alias:tee
 # }
 
+# Autorun commands
+
 winfetch
 
+# Delete default powershell aliases that conflict
+
+Remove-Item -Force Alias:nv
+
+# Aliases
+
+New-Alias -Name nv -Value nvim.exe
