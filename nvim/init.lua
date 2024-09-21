@@ -15,87 +15,49 @@ vim.g.loaded_netrwPlugin = 1
 
 vim.opt.termguicolors = true
 
-------------------------------------------------------------------
--- Key Bindings [keymap]
-------------------------------------------------------------------
-
-vim.g.mapleader = " "
-vim.keymap.set('n', '<leader>ve', ':$tabedit $MYVIMRC<cr>')
-vim.keymap.set('n', '<leader>vr', ':source $MYVIMRC<cr>')
-vim.keymap.set('n', '<leader>ll', ':Lazy<cr>')
-vim.keymap.set('n', ';', ':')
-vim.keymap.set('v', ';', ':')
-vim.keymap.set('n', 'gf', '<cmd>edit <cfile><cr>')
--- TODO make indentation keys available in Insert mode too
-vim.keymap.set('v', '<C-h>', '<gv')
-vim.keymap.set('v', '<C-l>', '>gv')
-vim.keymap.set('n', 'L', '$')
-vim.keymap.set('n', 'H', '^')
-vim.keymap.set('n', 'U', '<C-r>')
-vim.keymap.set('v', 'L', '$')
-vim.keymap.set('v', 'H', '^')
-vim.keymap.set('n', '<C-h>', '<<')
-vim.keymap.set('n', '<C-l>', '>>')
-vim.keymap.set('n', '<F4>', '<cmd>noh<cr>', { silent = true })
+vim.cmd("filetype plugin indent on")
 
 ------------------------------------------------------------------
--- General Settings [options]
+-- Included Files [require]
 ------------------------------------------------------------------
 
-vim.opt.expandtab = false
-vim.opt.shiftwidth = 4
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-
-vim.opt.hidden = true
-vim.opt.autochdir = true
-vim.opt.mouse = "a"
-
-vim.opt.relativenumber = true
-vim.opt.number = true
-
-vim.opt.list = true
-vim.opt.listchars = { tab = "\\.", trail = "~" }
-vim.opt.wrap = true
-vim.opt.smartcase = true
-vim.opt.ignorecase = true
-vim.opt.joinspaces = false
-
-vim.opt.title = true
-vim.opt.scrolloff = 16
-vim.opt.sidescrolloff = 8
-vim.opt.splitbelow = true
-vim.opt.splitright = true
+require("keymap")
+require("options")
+require("commands")
 
 ------------------------------------------------------------------
 -- Plugins & Settings [plugins]
 ------------------------------------------------------------------
 
-vim.cmd("filetype plugin indent on")
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
+end
+vim.opt.rtp:prepend(lazypath)
 
-require("plugins")
+-- Setup lazy.nvim
+require("lazy").setup({
+	spec = {
+		-- import your plugins
+		{ import = "plugins" },
+	},
+	-- Configure any other settings here. See the documentation for more details.
+	-- colorscheme that will be used when installing plugins.
+	install = { colorscheme = { "gruvbox" } },
+	-- automatically check for plugin updates
+	checker = { enabled = true },
+})
 
-------------------------------------------------------------------
--- Commands [commands]
-------------------------------------------------------------------
 
--- helptab
-vim.api.nvim_create_user_command("HelpTabCheck",
-	function()
-		-- if vim.api.nvim_buf_get_option(0, 'buftype') == 'help' then
-		if vim.api.nvim_get_option_value('buftype', {}) == 'help' then
-			vim.cmd.wincmd("T")
-			vim.keymap.set("n", "q", "<cmd>q<cr>", { buffer = true })
-			vim.keymap.set("n", "-", "<cmd>q<cr>", { buffer = true })
-		end
-	end,
-{})
 
-vim.api.nvim_create_augroup("help", { clear = true })
-vim.api.nvim_create_autocmd({ "BufEnter" },
-{
-	group = "help",
-	pattern = "*.txt",
-	command = "HelpTabCheck"
-}
-)
