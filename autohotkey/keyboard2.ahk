@@ -5,9 +5,9 @@
 #Requires AutoHotkey v2.0
 
 ;#NoEnv	; Recommended for performance and compatibility with future AutoHotkey releases.
-;#Warn  ; Enable warnings to assist with detecting common errors.
+;#Warn	; Enable warnings to assist with detecting common errors.
 ;SendMode Input	; Recommended for new scripts due to its superior speed and reliability.
-;SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+;SetWorkingDir %A_ScriptDir%	; Ensures a consistent starting directory.
 
 ; ================================
 ; AHK KEYS
@@ -26,6 +26,15 @@
 #Backspace::!F4
 ; #f::return
 #h::WinMinimize "A"
+#c::CenterWindow("A")
+
+CenterWindow(WinTitle)
+{
+	WinMove ,,(A_ScreenWidth*0.67),(A_ScreenHeight*0.78), WinTitle
+	WinGetPos ,, &Width, &Height, WinTitle
+	; WinMove (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2),(A_ScreenWidth*0.80),(A_ScreenHeight*0.80), WinTitle
+	WinMove (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2),,, WinTitle
+}
 
 ; ================================
 ; HYPER APPS
@@ -52,13 +61,14 @@ RunOrActivate(exec_test,exec_path)
 #Enter::RunOrActivate("Cmder ahk_exe ConEmu64.exe","C:\tools\Cmder\Cmder.exe")
 	#'::RunOrActivate("NVIM ahk_exe fvim.exe","C:\ProgramData\chocolatey\bin\fvim.exe")
 	#F::RunOrActivate("ahk_exe vivaldi.exe","C:\Program Files\Vivaldi\Application\vivaldi.exe")
+	; #F::RunOrActivate("ahk_exe firefox.exe","C:\Program Files\Mozilla Firefox\firefox.exe")
 	#B::RunOrActivate("ahk_exe thunderbird.exe","C:\Program Files\Mozilla Thunderbird\thunderbird.exe")
 	#M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe")
 	#N::RunOrActivate("ahk_exe Notion.exe","C:\Users\soyla\AppData\Local\Programs\Notion\Notion.exe")
 	#P::RunOrActivate("ahk_exe KeePassXC.exe","C:\Program Files\KeePassXC\KeePassXC.exe")
  ^!Esc::RunOrActivate("ahk_exe LibreHardwareMonitor.exe","C:\ProgramData\chocolatey\lib\librehardwaremonitor\tools\LibreHardwareMonitor.exe")
 	#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe")
-   #F7::RunOrActivate("ahk_exe AutoClicker-3.0.exe", "C:\tools\Autoclicker OP\AutoClicker-3.0.exe")
+	 #F7::RunOrActivate("ahk_exe AutoClicker-3.0.exe", "C:\tools\Autoclicker OP\AutoClicker-3.0.exe")
 
 ; ================================
 ; GAYMING
@@ -78,6 +88,7 @@ global explorer_tests := [ "ahk_class CabinetWClass",
 	"Open",
 	"Export",
 	"Import",
+	"File",
 	]
 
 #E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\")
@@ -90,8 +101,10 @@ global explorer_tests := [ "ahk_class CabinetWClass",
 	^K::ChangeDirectory("%APPDATA%")
 	^I::ChangeDirectory("%LOCALAPPDATA%")
 	^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
-	^P::ChangeDirectory("P:\")
-	^O::ChangeDirectory("O:\")
+	^1::ChangeDirectory("A:\")
+	^2::ChangeDirectory("B:\")
+	^3::ChangeDirectory("C:\")
+	^4::ChangeDirectory("F:\")
 	^G::ChangeDirectory("C:\Games")
 
 	#E::ChangeDirectory("explorer.exe .") ; window dupe hack!
