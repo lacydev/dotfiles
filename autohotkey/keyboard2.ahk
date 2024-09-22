@@ -103,8 +103,8 @@ global explorer_tests := [ "ahk_class CabinetWClass",
 	^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
 	^1::ChangeDirectory("A:\")
 	^2::ChangeDirectory("B:\")
-	^3::ChangeDirectory("C:\")
-	^4::ChangeDirectory("F:\")
+	^`::ChangeDirectory("C:\")
+	^3::ChangeDirectory("F:\")
 	^G::ChangeDirectory("C:\Games")
 
 	#E::ChangeDirectory("explorer.exe .") ; window dupe hack!
