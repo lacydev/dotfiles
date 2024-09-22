@@ -48,6 +48,11 @@ vim.opt.rtp:prepend(lazypath)
 
 -- Setup lazy.nvim
 require("lazy").setup({
+	defaults = {
+		lazy = false,
+		version = nil,
+		cond = nil,
+	},
 	spec = {
 		-- import your plugins
 		{ import = "plugins" },
@@ -56,7 +61,10 @@ require("lazy").setup({
 	-- colorscheme that will be used when installing plugins.
 	install = { colorscheme = { "gruvbox" } },
 	-- automatically check for plugin updates
-	checker = { enabled = true },
+	checker = {
+		enabled = false,
+	},
+
 })
 
 

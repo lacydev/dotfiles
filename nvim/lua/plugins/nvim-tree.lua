@@ -10,7 +10,8 @@ return {
 
 		-- sets `-` to open/focus nvim-tree and find the current open file
 		local function findAndFocus()
-			api.tree.find_file{ open = true, update_root = true }
+			api.tree.find_file{ open = true }
+			-- api.tree.find_file{ open = true, update_root = true }
 			api.tree.focus()
 		end
 
