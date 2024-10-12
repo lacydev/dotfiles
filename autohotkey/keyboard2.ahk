@@ -26,13 +26,17 @@
 #Backspace::!F4
 ; #f::return
 #h::WinMinimize "A"
-#c::CenterWindow("A")
+#c::CenterWindow("A",0)
+#+c::CenterWindow("A",1)
 
-CenterWindow(WinTitle)
+CenterWindow(WinTitle,DoResize)
 {
-	WinMove ,,(A_ScreenWidth*0.67),(A_ScreenHeight*0.78), WinTitle
+	if DoResize == 1
+	{
+		; WinMove ,,(A_ScreenWidth*0.67),(A_ScreenHeight*0.78), WinTitle
+		WinMove ,,1920,(1080 + SysGet(4)), WinTitle
+	}
 	WinGetPos ,, &Width, &Height, WinTitle
-	; WinMove (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2),(A_ScreenWidth*0.80),(A_ScreenHeight*0.80), WinTitle
 	WinMove (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2),,, WinTitle
 }
 
@@ -59,15 +63,15 @@ RunOrActivate(exec_test,exec_path)
 }
 
 #Enter::RunOrActivate("Cmder ahk_exe ConEmu64.exe","C:\tools\Cmder\Cmder.exe")
-	#'::RunOrActivate("NVIM ahk_exe fvim.exe","C:\ProgramData\chocolatey\bin\fvim.exe")
-	#F::RunOrActivate("ahk_exe vivaldi.exe","C:\Program Files\Vivaldi\Application\vivaldi.exe")
-	; #F::RunOrActivate("ahk_exe firefox.exe","C:\Program Files\Mozilla Firefox\firefox.exe")
-	#B::RunOrActivate("ahk_exe thunderbird.exe","C:\Program Files\Mozilla Thunderbird\thunderbird.exe")
-	#M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe")
-	#N::RunOrActivate("ahk_exe Notion.exe","C:\Users\soyla\AppData\Local\Programs\Notion\Notion.exe")
-	#P::RunOrActivate("ahk_exe KeePassXC.exe","C:\Program Files\KeePassXC\KeePassXC.exe")
+		#'::RunOrActivate("NVIM ahk_exe fvim.exe","C:\ProgramData\chocolatey\bin\fvim.exe")
+		#F::RunOrActivate("ahk_exe vivaldi.exe","C:\Program Files\Vivaldi\Application\vivaldi.exe")
+		; #F::RunOrActivate("ahk_exe firefox.exe","C:\Program Files\Mozilla Firefox\firefox.exe")
+		#B::RunOrActivate("ahk_exe thunderbird.exe","C:\Program Files\Mozilla Thunderbird\thunderbird.exe")
+		#M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe")
+		#N::RunOrActivate("ahk_exe Notion.exe","C:\Users\soyla\AppData\Local\Programs\Notion\Notion.exe")
+		#P::RunOrActivate("ahk_exe KeePassXC.exe","C:\Program Files\KeePassXC\KeePassXC.exe")
  ^!Esc::RunOrActivate("ahk_exe LibreHardwareMonitor.exe","C:\ProgramData\chocolatey\lib\librehardwaremonitor\tools\LibreHardwareMonitor.exe")
-	#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe")
+		#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe")
 	 #F7::RunOrActivate("ahk_exe AutoClicker-3.0.exe", "C:\tools\Autoclicker OP\AutoClicker-3.0.exe")
 
 ; ================================
@@ -82,18 +86,10 @@ RunOrActivate(exec_test,exec_path)
 ; EXPLORER.EXE
 ; ================================
 
-global explorer_tests := [ "ahk_class CabinetWClass",
-	"Save",
-	"Saving",
-	"Open",
-	"Export",
-	"Import",
-	"File",
-	]
 
 #E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\")
 
-#HotIf MultiWindowCheck(explorer_tests)
+#HotIf WinActive("ahk_class CabinetWClass")
 	; TODO: ^? to see a list of hotkeys for explorer
 	^+H::ChangeDirectory("%PUBLIC%")
 	^H::ChangeDirectory("%HOMEPATH%")
@@ -101,13 +97,12 @@ global explorer_tests := [ "ahk_class CabinetWClass",
 	^K::ChangeDirectory("%APPDATA%")
 	^I::ChangeDirectory("%LOCALAPPDATA%")
 	^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
-	^1::ChangeDirectory("A:\")
-	^2::ChangeDirectory("B:\")
-	^`::ChangeDirectory("C:\")
-	^3::ChangeDirectory("F:\")
 	^G::ChangeDirectory("C:\Games")
-
-	#E::ChangeDirectory("explorer.exe .") ; window dupe hack!
+	^P::ChangeDirectory("%HOMEPATH%\Projects")
+	^B::ChangeDirectory("B:\")
+	^Z::ChangeDirectory("Z:\")
+	^\::ChangeDirectory("C:\")
+	^F::ChangeDirectory("F:\")
 #HotIf
 
 ChangeDirectory(location)
@@ -116,21 +111,6 @@ ChangeDirectory(location)
 	Send location
 	Send "{Enter}"
 	return
-}
-
-MultiWindowCheck(tests)
-{
-	global
-	local is_active := false
-
-	for k,v in tests {
-		if WinActive(v) {
-			is_active := true
-			break
-		}
-	}
-
-	return is_active
 }
 
 

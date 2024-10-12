@@ -46,6 +46,7 @@ winfetch
 # Delete default powershell aliases that conflict
 
 Remove-Item -Force Alias:nv
+Remove-Item -Force Alias:wget
 
 # Aliases
 

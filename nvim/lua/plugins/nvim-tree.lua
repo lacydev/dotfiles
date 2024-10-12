@@ -9,13 +9,13 @@ return {
 		local api = require("nvim-tree.api")
 
 		-- sets `-` to open/focus nvim-tree and find the current open file
-		local function findAndFocus()
-			api.tree.find_file{ open = true }
-			-- api.tree.find_file{ open = true, update_root = true }
+		local function focusTree(updateRoot)
+			api.tree.find_file{ open = true, update_root = updateRoot }
 			api.tree.focus()
 		end
 
-		vim.keymap.set("n", "-", findAndFocus )
+		vim.keymap.set("n", "-", function() focusTree(false) end )
+		vim.keymap.set("n", "_", function() focusTree(true)  end)
 
 		local function defautl(bufnr)
 			local function opts(desc)
