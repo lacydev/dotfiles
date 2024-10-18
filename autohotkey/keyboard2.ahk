@@ -92,22 +92,23 @@ RunOrActivate(exec_test,exec_path)
 #HotIf WinActive("ahk_class CabinetWClass")
 	; TODO: ^? to see a list of hotkeys for explorer
 	^+H::ChangeDirectory("%PUBLIC%")
-	^H::ChangeDirectory("%HOMEPATH%")
-	^J::ChangeDirectory("%HOMEPATH%\Downloads")
-	^K::ChangeDirectory("%APPDATA%")
-	^I::ChangeDirectory("%LOCALAPPDATA%")
-	^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
-	^G::ChangeDirectory("C:\Games")
-	^P::ChangeDirectory("%HOMEPATH%\Projects")
-	^B::ChangeDirectory("B:\")
-	^Z::ChangeDirectory("Z:\")
-	^\::ChangeDirectory("C:\")
-	^F::ChangeDirectory("F:\")
+	 ^H::ChangeDirectory("%HOMEPATH%")
+	 ^J::ChangeDirectory("%HOMEPATH%\Downloads")
+	 ^K::ChangeDirectory("%APPDATA%")
+	 ^I::ChangeDirectory("%LOCALAPPDATA%")
+	 ^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
+	 ^G::ChangeDirectory("C:\Games")
+	 ^P::ChangeDirectory("%HOMEPATH%\Projects")
+	^!B::ChangeDirectory("B:\")
+	^!Z::ChangeDirectory("Z:\")
+	^!C::ChangeDirectory("C:\")
+	^!F::ChangeDirectory("F:\")
 #HotIf
 
 ChangeDirectory(location)
 {
 	Send "^l"
+	Send "^a"
 	Send location
 	Send "{Enter}"
 	return
