@@ -43,11 +43,11 @@
 
 winfetch
 
-# Delete default powershell aliases that conflict
+# Set new aliases
 
-Remove-Item -Force Alias:nv
-Remove-Item -Force Alias:wget
+if (Get-Command "wget.exe") { Remove-Item -Force Alias:wget -ErrorAction SilentlyContinue }
+if (Get-Command "nvim.exe") {
+	Remove-Item -Force Alias:nv -ErrorAction SilentlyContinue
+	New-Alias -Name nv -Value nvim.exe
+}
 
-# Aliases
-
-New-Alias -Name nv -Value nvim.exe
