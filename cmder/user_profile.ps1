@@ -53,7 +53,4 @@ if (Get-Command "nvim.exe") {
 	Remove-Item -Force Alias:nv
 	New-Alias -Name nv -Value nvim.exe
 }
-if (Get-Command "yt-dlp.exe") {
-	New-Alias -Name yt-360 -Value "yt-dlp -f 'bv*[height<=360]+ba/b[height<=360] / wv*+ba/w'"
-}
 
