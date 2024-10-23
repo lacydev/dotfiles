@@ -1,4 +1,7 @@
 # Use this file to run your own startup commands
+# Init
+
+$ErrorActionPreference = 'SilentlyContinue'
 
 ## Prompt Customization
 <#
@@ -41,13 +44,16 @@
 
 # Autorun commands
 
-winfetch
+if (Get-Command "winfetch.ps1" ) { winfetch.ps1 }
 
 # Set new aliases
 
-if (Get-Command "wget.exe") { Remove-Item -Force Alias:wget -ErrorAction SilentlyContinue }
+if (Get-Command "wget.exe") { Remove-Item -Force Alias:wget }
 if (Get-Command "nvim.exe") {
-	Remove-Item -Force Alias:nv -ErrorAction SilentlyContinue
+	Remove-Item -Force Alias:nv
 	New-Alias -Name nv -Value nvim.exe
+}
+if (Get-Command "yt-dlp.exe") {
+	New-Alias -Name yt-360 -Value "yt-dlp -f 'bv*[height<=360]+ba/b[height<=360] / wv*+ba/w'"
 }
 
