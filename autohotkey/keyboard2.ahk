@@ -25,7 +25,7 @@
 
 #Backspace::!F4
 ; #f::return
-#h::WinMinimize "A"
+#h::WinMinimize("A")
 #c::CenterWindow("A",0)
 #+c::CenterWindow("A",1)
 
@@ -48,11 +48,11 @@ RunOrActivate(exec_test,exec_path)
 {
 	if WinExist(exec_test)
 	{
-		if WinActive(exec_test)
+		if !WinActive(exec_test)
 		{
-			WinMinimize(exec_test)
-		} else {
 			WinActivate(exec_test)
+		} else {
+			AppCycleWindows()
 		}
 	} else {
 		Run(exec_path)
@@ -73,6 +73,14 @@ RunOrActivate(exec_test,exec_path)
  ^!Esc::RunOrActivate("ahk_exe LibreHardwareMonitor.exe","C:\ProgramData\chocolatey\lib\librehardwaremonitor\tools\LibreHardwareMonitor.exe")
 		#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe")
 	 #F7::RunOrActivate("ahk_exe AutoClicker-3.0.exe", "C:\tools\Autoclicker OP\AutoClicker-3.0.exe")
+
+AppCycleWindows()
+{
+	ActiveProcess := WinGetProcessName("A")
+	WinActivateBottom("ahk_exe " . ActiveProcess)
+}
+
+#`::AppCycleWindows()
 
 ; ================================
 ; GAYMING
