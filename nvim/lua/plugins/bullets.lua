@@ -17,7 +17,6 @@ return {
 		-- vim.g.bullets_checkbox_markers = '✗○◐●✓'
 		vim.g.bullets_checkbox_partials_toggle = 1
 
-		vim.keymap.set('n',	'<leader><Space>',	 '<cmd>ToggleCheckbox<cr>')
 	end
 }
 
