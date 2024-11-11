@@ -21,6 +21,10 @@ vim.cmd("filetype plugin indent on")
 -- Included Files [require]
 ------------------------------------------------------------------
 
+if vim.g.neovide then
+	require("ginit")
+end
+
 require("keymap")
 require("options")
 require("commands")

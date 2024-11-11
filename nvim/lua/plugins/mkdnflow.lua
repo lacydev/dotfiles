@@ -42,13 +42,21 @@ return {
 				conceal = false,
 				context = 0,
 				implicit_extension = nil,
-				transform_implicit = false,
-				transform_explicit = function(text)
-					text = text:gsub(" ", "-")
-					text = text:lower()
-					text = os.date('%Y-%m-%d_')..text
-					return(text)
+				transform_implicit = function(input)
+					if input:match('%d%d%d%d%-%d%d%-%d%d') then
+						return('journals/'..input)
+					else
+						return('pages/'..input)
+					end
 				end,
+
+				transform_explicit = false,
+				-- transform_explicit = function(text)
+				-- 	text = text:gsub(" ", "-")
+				-- 	text = text:lower()
+				-- 	text = os.date('%Y-%m-%d_')..text
+				-- 	return(text)
+				-- end,
 				create_on_follow_failure = true
 			},
 			new_file_template = {
@@ -63,11 +71,11 @@ return {
 				template = "# {{ title }}"
 			},
 			to_do = {
-				symbols = {' ', '-', 'X'},
+				symbols = {' ', '.', 'x'},
 				update_parents = true,
 				not_started = ' ',
-				in_progress = '-',
-				complete = 'X'
+				in_progress = '.',
+				complete = 'x'
 			},
 			foldtext = {
 				object_count = true,
