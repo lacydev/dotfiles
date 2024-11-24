@@ -44,6 +44,7 @@ $ErrorActionPreference = 'SilentlyContinue'
 
 # Autorun commands
 
+if (Get-Module "PSReadLine" ) { . ".\psreadline_profile.ps1" }
 if (Get-Command "winfetch.ps1" ) { winfetch.ps1 }
 
 # Set new aliases
