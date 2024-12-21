@@ -66,10 +66,10 @@ RunOrActivate(exec_test,exec_path)
 		; #'::RunOrActivate("NVIM ahk_exe fvim.exe","C:\ProgramData\chocolatey\bin\fvim.exe")
 		#'::RunOrActivate("ahk_exe neovide.exe","C:\Program Files\Neovide\neovide.exe")
 		#F::RunOrActivate("ahk_exe vivaldi.exe","C:\Program Files\Vivaldi\Application\vivaldi.exe")
-		; #F::RunOrActivate("ahk_exe firefox.exe","C:\Program Files\Mozilla Firefox\firefox.exe")
+		; #F::RunOrActivate("ahk_exe chrome.exe","C:\Program Files\Chromium\Application\chrome.exe"	)
 		#B::RunOrActivate("ahk_exe thunderbird.exe","C:\Program Files\Mozilla Thunderbird\thunderbird.exe")
 		#M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe")
-		#S::RunOrActivate("ahk_exe vlc.exe","C:\Program Files\VideoLAN\VLC\vlc.exe")
+		#S::RunOrActivate("ahk_exe AIMP.exe","C:\Program Files\AIMP\AIMP.exe")
 		#N::RunOrActivate("ahk_exe Notion.exe","C:\Users\soyla\AppData\Local\Programs\Notion\Notion.exe")
 		#P::RunOrActivate("ahk_exe KeePassXC.exe","C:\Program Files\KeePassXC\KeePassXC.exe")
  ^!Esc::RunOrActivate("ahk_exe LibreHardwareMonitor.exe","C:\ProgramData\chocolatey\lib\librehardwaremonitor\tools\LibreHardwareMonitor.exe")
@@ -86,7 +86,7 @@ AppCycleWindows()
 	}
 }
 
-#`::AppCycleWindows()
+!`::AppCycleWindows()
 
 ; ================================
 ; GAYMING
