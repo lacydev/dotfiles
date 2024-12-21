@@ -28,6 +28,7 @@ end
 require("keymap")
 require("options")
 require("commands")
+require("myfiletype")
 
 ------------------------------------------------------------------
 -- Plugins & Settings [plugins]
