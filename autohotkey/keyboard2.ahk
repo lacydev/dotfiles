@@ -102,8 +102,9 @@ AppCycleWindows()
 
 
 #E::RunOrActivate("ahk_class CabinetWClass","explorer.exe C:\Users\soyla\")
+; #E::RunOrActivate("ahk_exe Files.exe", "C:\Users\soyla\AppData\Local\Microsoft\WindowsApps\files.exe")
 
-#HotIf WinActive("ahk_class CabinetWClass")
+#HotIf ( WinActive("ahk_class CabinetWClass") or WinActive("ahk_class #32770") )
 	; TODO: ^? to see a list of hotkeys for explorer
 	^+H::ChangeDirectory("%PUBLIC%")
 	 ^H::ChangeDirectory("%HOMEPATH%")

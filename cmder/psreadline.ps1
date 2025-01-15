@@ -1,5 +1,5 @@
 Set-PSReadLineOption -PredictionSource HistoryAndPlugin
-Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineOption -PredictionViewStyle InlineView
 Set-PSReadLineOption -HistorySearchCursorMovesToEnd
 
 Set-PSReadLineKeyHandler -Key UpArrow -Function HistorySearchBackward
