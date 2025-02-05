@@ -31,13 +31,27 @@
 
 CenterWindow(WinTitle,DoResize)
 {
+	MonitorGetWorkArea 1, &WL, &WT, &WR, &WB
+
+	if WL > 0 {
+		WorkAreaWidth := A_ScreenWidth - WL
+	} else {
+		WorkAreaWidth := WR
+	}
+
+	if WT > 0 {
+		WorkAreaHeight := A_ScreenHeight - WT
+	} else {
+		WorkAreaHeight := WB
+	}
+
 	if DoResize == 1
 	{
 		; WinMove ,,(A_ScreenWidth*0.67),(A_ScreenHeight*0.78), WinTitle
-		WinMove ,,1920,(1080 + SysGet(4)), WinTitle
+		WinMove ,,2500,(1200 + SysGet(4)), WinTitle
 	}
 	WinGetPos ,, &Width, &Height, WinTitle
-	WinMove (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2),,, WinTitle
+	WinMove (WorkAreaWidth/2)-(Width/2)+WL, (WorkAreaHeight/2)-(Height/2)+WT,,, WinTitle
 }
 
 ; ================================
@@ -68,13 +82,31 @@ RunOrActivate(exec_test,exec_path)
 		#F::RunOrActivate("ahk_exe vivaldi.exe","C:\Program Files\Vivaldi\Application\vivaldi.exe")
 		; #F::RunOrActivate("ahk_exe chrome.exe","C:\Program Files\Chromium\Application\chrome.exe"	)
 		#B::RunOrActivate("ahk_exe thunderbird.exe","C:\Program Files\Mozilla Thunderbird\thunderbird.exe")
-		#M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe")
-		#S::RunOrActivate("ahk_exe AIMP.exe","C:\Program Files\AIMP\AIMP.exe")
+		; #M::RunOrActivate("ahk_exe Spotify.exe","C:\Users\soyla\AppData\Roaming\Spotify\Spotify.exe")
+		; #S::RunOrActivate("ahk_exe AIMP.exe","C:\Program Files\AIMP\AIMP.exe")
 		#N::RunOrActivate("ahk_exe Notion.exe","C:\Users\soyla\AppData\Local\Programs\Notion\Notion.exe")
 		#P::RunOrActivate("ahk_exe KeePassXC.exe","C:\Program Files\KeePassXC\KeePassXC.exe")
  ^!Esc::RunOrActivate("ahk_exe LibreHardwareMonitor.exe","C:\ProgramData\chocolatey\lib\librehardwaremonitor\tools\LibreHardwareMonitor.exe")
 		#J::RunOrActivate("ahk_exe Playnite.DesktopApp.exe","C:\Users\soyla\AppData\Local\Playnite\Playnite.DesktopApp.exe")
 	 #F7::RunOrActivate("ahk_exe AutoClicker-3.0.exe", "C:\tools\Autoclicker OP\AutoClicker-3.0.exe")
+
+; ================================
+; AIMP LAUNCH HACK
+; ================================
+
+#M::
+{
+	if WinExist("ahk_exe AIMP.exe")
+	{
+		SendEvent "^!{F12}"
+	} else {
+		RunOrActivate("ahk_exe AIMP.exe","C:\Program Files\AIMP\AIMP.exe")
+	}
+}
+
+; ================================
+; CYCLE WINDOWS
+; ================================
 
 AppCycleWindows()
 {
@@ -150,4 +182,24 @@ NumpadDel::F23
 NumpadMult::F24
 NumpadDiv::^F13
 
-
+Test__ShowMonitorInfo()
+{
+	MonitorCount := MonitorGetCount()
+	MonitorPrimary := MonitorGetPrimary()
+	MsgBox "Monitor Count:`t" MonitorCount "`nPrimary Monitor:`t" MonitorPrimary
+	Loop MonitorCount
+	{
+		MonitorGet A_Index, &L, &T, &R, &B
+		MonitorGetWorkArea A_Index, &WL, &WT, &WR, &WB
+		MsgBox
+		(
+			"Monitor:`t#" A_Index "
+			Name:`t" MonitorGetName(A_Index) "
+			Left:`t" L " (" WL " work)
+			Top:`t" T " (" WT " work)
+			Right:`t" R " (" WR " work)
+			Bottom:`t" B " (" WB " work)"
+		)
+	}
+	return
+}

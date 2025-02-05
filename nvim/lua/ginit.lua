@@ -1,3 +1,10 @@
+function NeovideToggleFullscreen()
+	vim.g.neovide_fullscreen = not vim.g.neovide_fullscreen
+end
+
+vim.keymap.set('n', '<F11>', ":lua NeovideToggleFullscreen()<cr>", {})
+vim.keymap.set('n', '<C-Enter>', ":lua NeovideToggleFullscreen()<cr>", {})
+
 vim.o.guifont = "Mononoki Nerd Font:h11"
 vim.g.neovide_scale_factor = 1.0
 vim.g.neovide_text_gamma = 0.0
@@ -12,7 +19,7 @@ vim.g.neovide_transparency = 0.985
 vim.g.neovide_hide_mouse_when_typing = true
 vim.g.neovide_theme = 'dark'
 vim.g.neovide_remember_window_size = true
-vim.g.neovide_fullscreen = true
+-- vim.g.neovide_fullscreen = false
 
 vim.g.neovide_position_animation_length = 0.07
 vim.g.neovide_scroll_animation_length = 0.1
