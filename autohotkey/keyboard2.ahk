@@ -25,33 +25,64 @@
 
 #Backspace::!F4
 ; #f::return
-#h::WinMinimize("A")
-#c::CenterWindow("A",0)
-#+c::CenterWindow("A",1)
+#h::HideWindow(WinGetPID("A"))
+#c::CenterWindow(WinGetPID("A"))
+#+c::CenterWindow(WinGetPID("A"))
 
-CenterWindow(WinTitle,DoResize)
+CenterWindow(pid)
 {
 	MonitorGetWorkArea 1, &WL, &WT, &WR, &WB
 
-	if WL > 0 {
+	WinGetPos ,, &Width, &Height, "ahk_pid " pid
+	ResolutionDict := [
+		{ Name: "vivaldi.exe", W: 1600, H: 1200 },
+		{ Name: "Playnite.DesktopApp.exe", W: 2500, H: 1200 },
+		{ Name: "neovide.exe", W: 1280, H: 1200 },
+		{ Name: "_dflt", W: Width, H: Height },
+	]
+
+	; find what resolution to use
+	idx := HasVal(ResolutionDict, WinGetProcessName("ahk_pid " pid))
+	NewWidth := ResolutionDict[idx].W
+	NewHeight := ResolutionDict[idx].H
+	if idx > -1
+		NewHeight := NewHeight + SysGet(4)
+
+	; adjust for taskbar
+	if WL > 0
 		WorkAreaWidth := A_ScreenWidth - WL
-	} else {
+	else
 		WorkAreaWidth := WR
-	}
 
-	if WT > 0 {
+	if WT > 0
 		WorkAreaHeight := A_ScreenHeight - WT
-	} else {
+	else
 		WorkAreaHeight := WB
-	}
 
-	if DoResize == 1
-	{
-		; WinMove ,,(A_ScreenWidth*0.67),(A_ScreenHeight*0.78), WinTitle
-		WinMove ,,2500,(1200 + SysGet(4)), WinTitle
+	; resize and center
+	WinMove ,, NewWidth, NewHeight, "ahk_pid " pid
+
+	WinGetPos ,, &Width, &Height, "ahk_pid " pid
+	WinMove (WorkAreaWidth/2)-(Width/2)+WL, (WorkAreaHeight/2)-(Height/2)+WT,,, "ahk_pid " pid
+}
+
+HasVal(arr, val)
+{
+	if !( IsObject(arr) ) || ( arr.Length = 0 )
+		return 0
+	for index, n in arr
+		if ( n.Name = val )
+			return index
+	return -1
+}
+
+HideWindow(pid)
+{
+	if WinActive("ahk_exe AIMP.exe") {
+		SendEvent "^!{F12}"
+	} else {
+		WinMinimize("ahk_pid " pid)
 	}
-	WinGetPos ,, &Width, &Height, WinTitle
-	WinMove (WorkAreaWidth/2)-(Width/2)+WL, (WorkAreaHeight/2)-(Height/2)+WT,,, WinTitle
 }
 
 ; ================================
@@ -65,7 +96,8 @@ RunOrActivate(exec_test,exec_path)
 		if !WinActive(exec_test)
 		{
 			WinActivate(exec_test)
-		} else {
+		}
+		else {
 			AppCycleWindows()
 		}
 	} else {
@@ -118,7 +150,7 @@ AppCycleWindows()
 	}
 }
 
-!`::AppCycleWindows()
+#`::AppCycleWindows()
 
 ; ================================
 ; GAYMING
@@ -140,9 +172,10 @@ AppCycleWindows()
 	; TODO: ^? to see a list of hotkeys for explorer
 	^+H::ChangeDirectory("%PUBLIC%")
 	 ^H::ChangeDirectory("%HOMEPATH%")
-	 ^J::ChangeDirectory("%HOMEPATH%\Downloads")
 	 ^K::ChangeDirectory("%APPDATA%")
 	 ^I::ChangeDirectory("%LOCALAPPDATA%")
+
+	 ^J::ChangeDirectory("%HOMEPATH%\Downloads")
 	 ^D::ChangeDirectory("%HOMEPATH%\.dotfiles")
 	 ^G::ChangeDirectory("C:\Games")
 	 ^P::ChangeDirectory("%HOMEPATH%\Projects")
